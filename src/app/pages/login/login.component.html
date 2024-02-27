@@ -1,18 +1,27 @@
 <div class="login-container">
   <div class="login-content">
 
+    <!-- https://v7.material.angular.io/components/form-field/overview -->
 
+    <p class="Title-login">Login!</p>
+    <p class="Title-welcome">Welcome To StudyEasy! </p>
+    
     <!--Username-->
-    <mat-form-field> <!-- https://v7.material.angular.io/components/form-field/overview -->
+    <mat-form-field appearance="outline"> <!--give the input box an outline-->
         <mat-label>Username</mat-label>
         <input matInput type="text">  <!-- matInput include error messages, hitn text etc.-->
     </mat-form-field>
 
      <!--Password-->
-     <mat-form-field> 
+     <mat-form-field appearance="outline"> 
       <mat-label>Password</mat-label> <!--Type password not text-->
       <input matInput type="password">
   </mat-form-field>
+
+  <p class="Forgot-label">Forgot Password?</p>
+  <p class="SignUp-label"> Don't Have an Account? <span>Sign Up!</span></p>
+
+
 
 
   </div>
