@@ -9,7 +9,11 @@
     <!--Username-->
     <mat-form-field appearance="outline"> <!--give the input box an outline-->
         <mat-label>Username</mat-label>
-        <input matInput type="text">  <!-- matInput include error messages, hitn text etc.-->
+        <!-- Input field with a form control binding to passwordControl -->
+        <input [formControl]="passwordControl" matInput type="text">  <!-- matInput include error messages, hitn text etc.-->
+        <mat-error *ngIf="passwordControl.hasError('required')">      <!-- Mat-error displays an error message if the 'required' validation fails -->
+            Username is required
+        </mat-error>
     </mat-form-field>
 
      <!--Password-->
@@ -19,7 +23,7 @@
   </mat-form-field>
 
   <p class="Forgot-label">Forgot Password?</p>
-  <p class="SignUp-label"> Don't Have an Account? <span>Sign Up!</span></p>
+  <p class="SignUp-label"> Don't Have an Account? <span [routerLink]="['/register']">Sign Up!</span></p>
 
 
 

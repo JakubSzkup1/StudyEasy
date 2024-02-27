@@ -1,3 +1,4 @@
+import { ReactiveFormsModule,FormsModule } from '@angular/forms'
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -34,6 +35,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
     MatInputModule,
     MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule,
     
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
