@@ -66,5 +66,12 @@
   
   .session-form button {
     margin-top: 20px; 
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc; 
+    padding: 10px 20px; 
+    border-radius: 4px; 
   }
   
+  .session-form button:hover {
+    background-color: #e0e0e0; 
+  }
