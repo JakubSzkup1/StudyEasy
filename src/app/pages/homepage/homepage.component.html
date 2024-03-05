@@ -1,3 +1,22 @@
-<p>
-  homepage works!
-</p>
+<!-- homepage.component.html -->
+<div class="homepage-container">
+  <h2>Week Calendar</h2>
+
+  <div>
+    <h3>Add Study Session</h3>
+    <form>
+      <label>Subject: <input type="text" [(ngModel)]="subject" name="subject"></label><br>
+      <label>Time: <input type="text" [(ngModel)]="time" name="time"></label><br>
+      <label>Day: 
+        <select [(ngModel)]="day" name="day">
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+        </select>
+      </label><br>
+      <button type="button" (click)="addSession()">Add Session</button>
+    </form>
+  </div>
+</div>
