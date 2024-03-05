@@ -16,6 +16,8 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
+import { WeekCalendarComponent } from './pages/week-calendar/week-calendar.component';
+
 
 
 
@@ -24,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     RegistrationComponent,
-    HomepageComponent
+    HomepageComponent,
+    WeekCalendarComponent
   ],
   imports: [
     BrowserModule,
