@@ -1,3 +1,6 @@
-<p>
-  pomodoro works!
-</p>
+
+<div class="pomodoro-container">
+  <h1 class="timer">{{ formatTime() }}</h1>
+  <button (click)="startPauseTimer()" class="control-button">{{ isPaused ? 'Start' : 'Pause' }}</button>
+  <button (click)="resetTimer()" class="control-button">Reset</button>
+</div>
