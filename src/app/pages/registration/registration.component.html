@@ -1,23 +1,17 @@
-<<<<<<< HEAD
-=======
-<app-navbar></app-navbar>
->>>>>>> parent of de98dbe (redo)
 <div class="login-container">
   <div class="login-content">
 
     <!-- https://v7.material.angular.io/components/form-field/overview -->
 
-    <p class="Title-login">Login!</p>
     <p class="Title-welcome">Welcome To StudyEasy! </p>
+    <p class="Title-login">Register Here!</p>
     
     <!--Username-->
     <mat-form-field appearance="outline"> <!--give the input box an outline-->
         <mat-label>Username</mat-label>
         <!-- Input field with a form control binding to passwordControl -->
-        <input [formControl]="passwordControl" matInput type="text">  <!-- matInput include error messages, hitn text etc.-->
-        <mat-error *ngIf="passwordControl.hasError('required')">      <!-- Mat-error displays an error message if the 'required' validation fails -->
-            Username is required
-        </mat-error>
+        <input  matInput type="text">  <!-- matInput include error messages, hitn text etc.-->
+        
     </mat-form-field>
 
      <!--Password-->
