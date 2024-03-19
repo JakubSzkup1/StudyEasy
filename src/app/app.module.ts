@@ -17,8 +17,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WeekCalendarComponent } from './pages/week-calendar/week-calendar.component';
-import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
-import { NavbarComponent } from './pages/navbar/navbar.component';
+
 
 
 
@@ -28,8 +27,7 @@ import { NavbarComponent } from './pages/navbar/navbar.component';
     LoginComponent,
     RegistrationComponent,
     HomepageComponent,
-    WeekCalendarComponent,
-    NavbarComponent
+    WeekCalendarComponent
   ],
   imports: [
     BrowserModule,
