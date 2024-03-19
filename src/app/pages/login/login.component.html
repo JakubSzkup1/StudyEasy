@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
-<app-navbar></app-navbar>
->>>>>>> parent of de98dbe (redo)
+
 <div class="login-container">
   <div class="login-content">
 
@@ -14,17 +11,23 @@
     <mat-form-field appearance="outline"> <!--give the input box an outline-->
         <mat-label>Username</mat-label>
         <!-- Input field with a form control binding to passwordControl -->
-        <input [formControl]="passwordControl" matInput type="text">  <!-- matInput include error messages, hitn text etc.-->
-        <mat-error *ngIf="passwordControl.hasError('required')">      <!-- Mat-error displays an error message if the 'required' validation fails -->
+        <input [formControl]="usernameControl" matInput type="text">  <!-- matInput include error messages, hitn text etc.-->
+        <mat-error *ngIf="usernameControl.hasError('required')">      <!-- Mat-error displays an error message if the 'required' validation fails -->
             Username is required
         </mat-error>
     </mat-form-field>
 
      <!--Password-->
      <mat-form-field appearance="outline"> 
-      <mat-label>Password</mat-label> <!--Type password not text-->
-      <input matInput type="password">
+      <mat-label>Password</mat-label>
+      <input [formControl]="passwordControl" matInput type="password">
+      <mat-error *ngIf="passwordControl.hasError('required')">
+        Password is required
+      </mat-error>
   </mat-form-field>
+
+   <!-- Login Button -->
+   <button mat-raised-button color="primary" (click)="login()">Login</button>
 
   <p class="Forgot-label">Forgot Password?</p>
   <p class="SignUp-label"> Don't Have an Account? <span [routerLink]="['/register']">Sign Up!</span></p>
