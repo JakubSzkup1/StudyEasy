@@ -22,13 +22,17 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistrationComponent,
     HomepageComponent,
-    WeekCalendarComponent
+    WeekCalendarComponent,
+   
+
   ],
   imports: [
     BrowserModule,

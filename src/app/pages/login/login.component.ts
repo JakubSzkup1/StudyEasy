@@ -1,5 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+//import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Component({
@@ -13,8 +15,6 @@ export class LoginComponent  implements OnInit {
   passwordControl:FormControl = new FormControl('', Validators.required) //need to work on username and password validator instead of having separate!!!!
   usernameControl: FormControl = new FormControl('', Validators.required);
 
-  isButtonDisabled: boolean = false; // Initially disable the button
-
   constructor() { }
 
   ngOnInit() {
@@ -26,9 +26,6 @@ export class LoginComponent  implements OnInit {
     console.log('Login button clicked');
   }
 
-  // Method to enable the button
-  enableButton() {
-    this.isButtonDisabled = false;
-  }
+ 
 
 }
