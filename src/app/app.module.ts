@@ -17,6 +17,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WeekCalendarComponent } from './pages/week-calendar/week-calendar.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 
@@ -40,7 +41,7 @@ import { WeekCalendarComponent } from './pages/week-calendar/week-calendar.compo
     ReactiveFormsModule,
     FormsModule // Add FormsModule to imports
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
