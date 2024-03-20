@@ -1,15 +1,21 @@
 .pomodoro-container {
     text-align: center;
-    margin-top: 50px;
-    border: 2px solid #470288;
-    display: inline-block;
-    padding: 10px
-    
+    margin-top: 10px;
+    border: 2px solid #470288; 
+    padding-block: 10px;
+    padding-inline: 20px; 
+     width: 300px;
+     height: 200px;
+     display: flex; /* Use flexbox */
+     justify-content: center; /* Center items horizontally */
+     align-items: center; /* Center items vertically */
   }
   
   .timer {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 3em;
+    color: #470288;
+    margin:0 auto;
+    display: block;
     
   }
   
@@ -21,6 +27,11 @@
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .control-button:hover{
+    background-color:#265c7d; /*Darkens the background color when hovered*/
   }
   
  
