@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { NavbarComponent } from 'src/app/navbar/navbar.component';
 
 @Component({
   selector: 'app-homepage',

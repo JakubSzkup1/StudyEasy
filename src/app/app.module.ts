@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WeekCalendarComponent } from './pages/week-calendar/week-calendar.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -31,6 +32,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     RegistrationComponent,
     HomepageComponent,
     WeekCalendarComponent,
+    NavbarComponent
    
 
   ],

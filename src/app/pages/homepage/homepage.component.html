@@ -1,12 +1,14 @@
 <!-- homepage.component.html -->
+<app-navbar></app-navbar>
 <div class="homepage-container">
+ 
   <h2>Week Calendar</h2>
-
 
   <!-- Week Calendar Component -->
   <app-week-calendar></app-week-calendar>
 
   <div class = "session-form">
+    
     <h3>Add Study Session</h3>
     <form>
       <label>Subject: <input type="text" [(ngModel)]="subject" name="subject"></label><br>
