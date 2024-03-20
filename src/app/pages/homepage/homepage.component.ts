@@ -55,12 +55,30 @@ export class HomepageComponent implements OnInit {
         description: this.eventDescription
       };
       this.reminders.push(newReminder);
-      this.showCalendar(this.selectedMonth, this.selectedYear);
+  
+      const selectedDate = new Date(this.eventDate);
+      const day = selectedDate.getDate();
+      const month = selectedDate.getMonth();
+      const year = selectedDate.getFullYear();
+      this.markSelectedDate(day, month, year);
+  
       this.eventDate = '';
       this.eventTitle = '';
       this.eventDescription = '';
     }
   }
+  
+  markSelectedDate(day: number, month: number, year: number): void {
+    for (const week of this.weeks) {
+      for (const date of week) {
+        if (date.date === day && date.month === month && date.year === year) {
+          date.hasEvent = true;
+          return;
+        }
+      }
+    }
+  }
+  
 
   deleteEvent(id: number): void {
     const index = this.reminders.findIndex(reminder => reminder.id === id);
@@ -137,7 +155,6 @@ export class HomepageComponent implements OnInit {
 
   selectDate(day: any): void {
     if (day.date !== null) {
-      // Implement your logic here for handling date selection
       console.log('Selected Date:', day);
     }
   }
@@ -150,7 +167,6 @@ export class HomepageComponent implements OnInit {
   }
 
   displayReminders(): void {
-    // Implement your logic to display reminders
   }
 
   hasEvent(day: any): boolean {
