@@ -1,11 +1,16 @@
 .pomodoro-container {
     text-align: center;
     margin-top: 50px;
+    border: 2px solid #470288;
+    display: inline-block;
+    padding: 10px
+    
   }
   
   .timer {
     font-size: 2em;
     margin-bottom: 20px;
+    
   }
   
   .control-button {
