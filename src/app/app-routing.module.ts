@@ -29,6 +29,10 @@ const routes: Routes = [
     component: PomodoroComponent
   },
   {
+    path: 'timetable',
+    component: PomodoroComponent
+  },
+  {
     path: '**',
     redirectTo: 'login'
   }
