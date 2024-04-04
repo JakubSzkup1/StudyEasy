@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { HomepageComponent } from './pages/homepage/homepage.component'; // Adjust the path as per your project structure
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
+import { TimetableComponent } from './pages/timetable/timetable.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'pomodoro',
     component: PomodoroComponent
+  },
+  {
+    path: 'timetable',
+    component: TimetableComponent
   },
   {
     path: '**',

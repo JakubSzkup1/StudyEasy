@@ -1,0 +1,29 @@
+<div class="timetable-container">
+  <h2>{{ currentGroup }} Timetable</h2>
+  <div class="group-buttons">
+    <button *ngFor="let group of ['Group A', 'Group B', 'Group C']" (click)="switchGroup(group)">
+      {{ group }}
+    </button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Time</th>
+        <th>Subject</th>
+        <th>Type</th>
+        <th>Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of displayedTimetable">
+        <td>{{ entry.day }}</td>
+        <td>{{ entry.time }}</td>
+        <td>{{ entry.subject }}</td>
+        <td>{{ entry.type }}</td>
+        <td>{{ entry.room }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

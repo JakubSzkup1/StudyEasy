@@ -21,6 +21,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { NavbarComponent } from './navbar/navbar.component';
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 
+import { TimetableComponent } from './pages/timetable/timetable.component';
+
+
 
 
 
@@ -34,7 +37,10 @@ import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
     HomepageComponent,
     WeekCalendarComponent,
     NavbarComponent,
-    PomodoroComponent
+
+    PomodoroComponent,
+
+    TimetableComponent
    
 
   ],

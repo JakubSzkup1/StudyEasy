@@ -1,30 +1,65 @@
-<!-- homepage.component.html -->
-<app-navbar></app-navbar>
-<div class="homepage-container">
- 
-  <h2>Week Calendar</h2>
-
-  <!-- Week Calendar Component -->
-  <app-week-calendar></app-week-calendar>
-
-  <div class = "session-form">
-    
-    <h3>Add Study Session</h3>
-    <form>
-      <label>Subject: <input type="text" [(ngModel)]="subject" name="subject"></label><br>
-      <label>Time: <input type="text" [(ngModel)]="time" name="time"></label><br>
-      <label>Day: 
-        <select [(ngModel)]="day" name="day">
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-          <option value="Saturday">Saturday</option>
-          <option value="Friday">Sunday</option>
-        </select>
-      </label><br>
-      <button type="button" (click)="addSession()">Add Session</button>
-    </form>
-  </div>
+<div class="wrapper">
+  <div class="container-calendar">
+      <div id="left">
+        <h1>Study Calendar</h1>
+        <div id="event-section">
+            <h3>Add Study Session</h3>
+            <input type="date" [(ngModel)]="eventDate">
+            <input type="text" [(ngModel)]="eventTitle" placeholder="Subject">
+            <input type="text" [(ngModel)]="eventDescription" placeholder="Time">
+            <button (click)="addEvent()">Add</button>
+        </div>
+        <div id="reminder-section">
+            <h3>Study Sessions</h3>
+            <ul>
+                <li *ngFor="let reminder of reminders">
+                    <strong>{{ reminder.title }}</strong> - {{ reminder.description }} on {{ reminder.date }}
+                    <button (click)="deleteEvent(reminder.id)">Delete</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="right">
+        <h3 id="monthAndYear">{{ monthAndYear }}</h3>
+        <div class="button-container-calendar">
+            <button (click)="previous()">‹</button>
+            <button (click)="next()">›</button>
+        </div>
+        <table class="table-calendar">
+            <thead>
+                <tr>
+                  <th *ngFor="let dayName of dayNames" [attr.data-days]="dayName">{{ dayName }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let week of weeks">
+                  <td *ngFor="let day of week" [class.date-picker]="day.date !== null" [attr.data-date]="day.date" [attr.data-month]="day.month" [attr.data-year]="day.year" [attr.data-month_name]="day.monthName" [class.selected]="isToday(day)" (click)="selectDate(day)">
+                    <span>{{ day.date }}</span>
+                    <div *ngIf="hasEvent(day)" class="event-marker">
+                        <div class="event-tooltip">
+                            <p *ngFor="let event of getEvents(day)">
+                                <strong>{{ event.title }}</strong> - {{ event.description }} on {{ event.date }}
+                            </p>
+                        </div>
+                    </div>
+                    <div *ngIf="day.hasEvent" class="event-marker">
+                        <!-- Adding green dot to display event on calendar !-->
+                        <div class="event-indicator"></div>
+                    </div>
+                </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer-container-calendar">
+            <label for="month">Jump To:</label>
+            <select id="month" [(ngModel)]="selectedMonth" (change)="jump()">
+                <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
+            </select>
+            <select id="year" [(ngModel)]="selectedYear" (change)="jump()">
+                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+            </select>
+        </div>
+    </div>
 </div>
+</div>
+
