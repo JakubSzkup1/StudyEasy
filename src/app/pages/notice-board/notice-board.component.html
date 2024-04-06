@@ -1,11 +1,17 @@
-<div>
+<div class="container">
+<div class="notice-board-container">
+  <div class ="header">
   <h2>Add a Notice</h2>
+  </div>
+
+ <div class="form section">
   <input type="text" [(ngModel)]="newNotice.title" placeholder="Title" />
   <textarea [(ngModel)]="newNotice.message" placeholder="Message"></textarea>
   <button (click)="addNotice()">Add Notice</button>
+  </div>
 </div>
 
-<div>
+<div class="notices-section">
   <h2>Notices</h2>
   <ul>
     <li *ngFor="let notice of notices">
@@ -13,4 +19,5 @@
       <p>{{ notice.message }}</p>
     </li>
   </ul>
+</div>
 </div>
