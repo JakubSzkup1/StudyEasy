@@ -19,7 +19,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { WeekCalendarComponent } from './pages/week-calendar/week-calendar.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
+
 import { TimetableComponent } from './pages/timetable/timetable.component';
+
 
 
 
@@ -34,6 +37,9 @@ import { TimetableComponent } from './pages/timetable/timetable.component';
     HomepageComponent,
     WeekCalendarComponent,
     NavbarComponent,
+
+    PomodoroComponent,
+
     TimetableComponent
    
 
