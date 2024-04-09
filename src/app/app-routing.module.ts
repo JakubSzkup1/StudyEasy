@@ -39,6 +39,8 @@ const routes: Routes = [
     path: 'notice-board',
     component: NoticeBoardComponent
   },
+  
+
   {
     path: '**',
     redirectTo: 'login'

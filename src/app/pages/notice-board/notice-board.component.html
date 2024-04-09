@@ -1,19 +1,23 @@
 <div class="container">
-<div class="notice-board-container">
+<div class="notice-board-container">  <!-- Container for the notice board -->
+  <!-- This section is for adding a new notice -->
   <div class ="header">
   <h2>Add a Notice</h2>
   </div>
 
+  <!-- Form for adding a new notice -->
  <div class="form section">
-  <input type="text" [(ngModel)]="newNotice.title" placeholder="Title" />
+  <input type="text" [(ngModel)]="newNotice.title" placeholder="Title" /> <!-- Input field for entering the title of the notice -->
   <textarea [(ngModel)]="newNotice.message" placeholder="Message"></textarea>
-  <button (click)="addNotice()">Add Notice</button>
+  <button (click)="addNotice()">Add Notice</button> <!-- Button to submit the new notice -->
   </div>
 </div>
 
+ <!-- Section for displaying existing notices -->
 <div class="notices-section">
   <h2>Notices</h2>
   <ul>
+     <!-- Loop through each notice and display its title and message -->
     <li *ngFor="let notice of notices">
       <h3>{{ notice.title }}</h3>
       <p>{{ notice.message }}</p>

@@ -51,9 +51,11 @@ import { NoticeBoardComponent } from './pages/notice-board/notice-board.componen
     MatInputModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    FormsModule // Add FormsModule to imports
+    FormsModule, // Add FormsModule to imports
+    
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}
