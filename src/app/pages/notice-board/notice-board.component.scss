@@ -84,5 +84,36 @@ button:hover {
   font-size: 14px;
   white-space: nowrap;
   overflow: hidden;
-  
+ 
 }
+
+.tag-important {
+  @extend .tag-base;
+  background-color: #ff6347; // Orange
+}
+
+.tag-urgent {
+  @extend .tag-base;
+  background-color: #ffd700; // Gold
+  color: #000000; // Black
+}
+
+.tag-general {
+  @extend .tag-base;
+  background-color: #20b2aa; // Light Green
+}
+
+.tag-announcement {
+  @extend .tag-base;
+  background-color: #4169e1; // RoyalBlue
+}
+
+.tag-base {
+  display: inline-block;
+  padding: 4px 8px;
+  margin-right: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #ffffff; // White
+}
+

@@ -11,10 +11,12 @@ export class PomodoroComponent implements OnInit {
   //Store timer data
   time: number;
   isPaused: boolean; //to check if timer  is paused
+  timeInMinutes: number; // So user can input in custom time
 
   constructor() {
     this.time = 1500; // Initial time in seconds (25 minutes)
     this.isPaused = true; //timer is initially paused as its = true
+    this.timeInMinutes = 25; // Default custom set to 25 mins
   }
 
   ngOnInit() {
@@ -50,7 +52,14 @@ export class PomodoroComponent implements OnInit {
 
   //Method to reset the timer to the initial value
   resetTimer() {
-    this.time = 1500; // Reset time to initial value
+    //this.time = 1500; // Reset time to initial value
+    this.time = this.timeInMinutes* 60; //resets time to custom value
     this.isPaused = true; //Pause the timer
+  }
+
+  //Method to set custom time
+  setCustomTime(){
+    this.time= this.timeInMinutes*60 //resets time to custom value
+    this.isPaused = true; // Pause the timer
   }
 }

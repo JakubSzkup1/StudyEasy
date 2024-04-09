@@ -6,6 +6,7 @@ export interface Notice {
   id?: string;
   title: string;
   message: string;
+  tags?: string[]; //Tags property
 }
 
 //This is where all the firebase backend happens for retrieving and getting data
