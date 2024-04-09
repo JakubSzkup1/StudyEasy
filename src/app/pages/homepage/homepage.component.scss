@@ -228,9 +228,26 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #ff4d4d; /* Adjust the color if needed */
+  background: #ff4d4d; 
   color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+}
+
+.edit-event {
+  background: #4CAF50; /* Green color for edit button */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+
+input[type="text"] {
+  width: calc(100% - 20px); 
+  padding: 5px;
+  margin: 5px 0;
+  box-sizing: border-box;
 }

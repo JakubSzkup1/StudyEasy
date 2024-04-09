@@ -45,15 +45,23 @@
     
     <!-- Study Sessions in Grid -->
     <div class="study-session-grid">
-      <h3>Study Sessions</h3>
-      <div class="grid-container">
-        <div class="grid-item" *ngFor="let reminder of reminders">
-          <div class="session-details">
-            <strong>{{ reminder.title }}</strong> - {{ reminder.description }} on {{ reminder.date }}
-            <button class="delete-event" (click)="deleteEvent(reminder.id)">Delete</button>
+        <h3>Study Sessions</h3>
+        <div class="grid-container">
+          <div class="grid-item" *ngFor="let reminder of reminders">
+            <div *ngIf="editingSessionId === reminder.id; else viewMode">
+              <input type="text" [(ngModel)]="tempEventTitle">
+              <input type="text" [(ngModel)]="tempEventDescription">
+              <button (click)="saveSession(reminder.id)">Save</button>
+              <button (click)="cancelEdit()">Cancel</button>
+            </div>
+            <ng-template #viewMode>
+              <div class="session-details">
+                <strong>{{ reminder.title }}</strong> - {{ reminder.description }} on {{ reminder.date }}
+                <button class="edit-event" (click)="editSession(reminder.id)">Edit</button>
+                <button class="delete-event" (click)="deleteEvent(reminder.id)">Delete</button>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>
-    </div>
-  </div>
   

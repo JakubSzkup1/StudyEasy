@@ -28,6 +28,10 @@ export class HomepageComponent implements OnInit {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
+  editingSessionId: number | null = null;
+  tempEventTitle: string = '';
+  tempEventDescription: string = '';
+
   dayNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor() {
@@ -175,5 +179,27 @@ export class HomepageComponent implements OnInit {
 
   getEvents(day: any): Reminder[] {
     return day.reminders;
+  }
+
+  editSession(id: number): void {
+    const reminder = this.reminders.find(r => r.id === id);
+    if (!reminder) return;
+
+    this.editingSessionId = id;
+    this.tempEventTitle = reminder.title;
+    this.tempEventDescription = reminder.description;
+  }
+
+  saveSession(id: number): void {
+    const reminder = this.reminders.find(r => r.id === id);
+    if (!reminder) return;
+
+    reminder.title = this.tempEventTitle;
+    reminder.description = this.tempEventDescription;
+    this.editingSessionId = null; // Stop editing mode
+  }
+
+  cancelEdit(): void {
+    this.editingSessionId = null;
   }
 }
