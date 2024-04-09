@@ -208,8 +208,9 @@ body {
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust the min size for larger boxes */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
   gap: 20px;
+  margin-top: 20px; 
 }
 
 .grid-item {
@@ -221,33 +222,65 @@ body {
 }
 
 .session-details {
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 10px;
 }
+
+
+.edit-event,
+.delete-event {
+  padding: 5px 10px;
+  margin-left: 5px; 
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  float: right; 
+}
+
 
 .delete-event {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: #ff4d4d; 
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+  position: static;
+  background-color: #f44336; 
 }
 
+
 .edit-event {
-  background: #4CAF50; /* Green color for edit button */
+  position: static; 
+  background-color: #4CAF50; 
   color: white;
-  border: none;
-  padding: 5px 10px;
-  margin-right: 10px;
-  cursor: pointer;
+}
+
+
+.session-details::after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 
 input[type="text"] {
-  width: calc(100% - 20px); 
+  width: 100%; 
   padding: 5px;
   margin: 5px 0;
   box-sizing: border-box;
+}
+
+
+.save-btn,
+.cancel-btn {
+  padding: 5px 10px;
+  margin: 0 5px; 
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.save-btn {
+  background-color: #4CAF50; 
+}
+
+.cancel-btn {
+  background-color: #757575; 
 }
