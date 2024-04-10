@@ -1,66 +1,68 @@
 <app-navbar></app-navbar>
 <div class="wrapper">
-  <div class="container-calendar">
+    <div class="container-calendar">
       <div id="left">
         <h1>Study Calendar</h1>
         <div id="event-section">
-            <h3>Add Study Session</h3>
-            <input type="date" [(ngModel)]="eventDate">
-            <input type="text" [(ngModel)]="eventTitle" placeholder="Subject">
-            <input type="text" [(ngModel)]="eventDescription" placeholder="Time">
-            <button (click)="addEvent()">Add</button>
+          <h3>Add Study Session</h3>
+          <input type="date" [(ngModel)]="eventDate">
+          <input type="text" [(ngModel)]="eventTitle" placeholder="Subject">
+          <input type="text" [(ngModel)]="eventDescription" placeholder="Time">
+          <button (click)="addEvent()">Add</button>
         </div>
-        <div id="reminder-section">
-            <h3>Study Sessions</h3>
-            <ul>
-                <li *ngFor="let reminder of reminders">
-                    <strong>{{ reminder.title }}</strong> - {{ reminder.description }} on {{ reminder.date }}
-                    <button (click)="deleteEvent(reminder.id)">Delete</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <div id="right">
+      </div>
+      <div id="right">
         <h3 id="monthAndYear">{{ monthAndYear }}</h3>
         <div class="button-container-calendar">
-            <button (click)="previous()">‹</button>
-            <button (click)="next()">›</button>
+          <button (click)="previous()">‹</button>
+          <button (click)="next()">›</button>
         </div>
         <table class="table-calendar">
-            <thead>
-                <tr>
-                  <th *ngFor="let dayName of dayNames" [attr.data-days]="dayName">{{ dayName }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let week of weeks">
-                  <td *ngFor="let day of week" [class.date-picker]="day.date !== null" [attr.data-date]="day.date" [attr.data-month]="day.month" [attr.data-year]="day.year" [attr.data-month_name]="day.monthName" [class.selected]="isToday(day)" (click)="selectDate(day)">
-                    <span>{{ day.date }}</span>
-                    <div *ngIf="hasEvent(day)" class="event-marker">
-                        <div class="event-tooltip">
-                            <p *ngFor="let event of getEvents(day)">
-                                <strong>{{ event.title }}</strong> - {{ event.description }} on {{ event.date }}
-                            </p>
-                        </div>
-                    </div>
-                    <div *ngIf="day.hasEvent" class="event-marker">
-                        <!-- Adding green dot to display event on calendar !-->
-                        <div class="event-indicator"></div>
-                    </div>
-                </td>
-                </tr>
-            </tbody>
+          <thead>
+            <tr>
+              <th *ngFor="let dayName of dayNames">{{ dayName }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let week of weeks">
+              <td *ngFor="let day of week" [class.is-today]="isToday(day)" (click)="selectDate(day)">
+                <span>{{ day.date }}</span>
+                <div *ngIf="hasEvent(day)" class="event-indicator"></div>
+              </td>
+            </tr>
+          </tbody>
         </table>
         <div class="footer-container-calendar">
-            <label for="month">Jump To:</label>
-            <select id="month" [(ngModel)]="selectedMonth" (change)="jump()">
-                <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
-            </select>
-            <select id="year" [(ngModel)]="selectedYear" (change)="jump()">
-                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-            </select>
+          <label for="month">Jump To:</label>
+          <select id="month" [(ngModel)]="selectedMonth" (change)="jump()">
+            <option *ngFor="let month of months; index as i" [value]="i">{{ month }}</option>
+          </select>
+          <select id="year" [(ngModel)]="selectedYear" (change)="jump()">
+            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+          </select>
         </div>
+      </div>
     </div>
-</div>
-</div>
-
+    
+    <!-- Study Sessions in Grid -->
+    <div class="study-session-grid">
+        <h3>Study Sessions</h3>
+        <div class="grid-container">
+          <div class="grid-item" *ngFor="let reminder of reminders">
+            <div *ngIf="editingSessionId === reminder.id; else viewMode">
+              <input type="text" [(ngModel)]="tempEventTitle">
+              <input type="text" [(ngModel)]="tempEventDescription">
+              <button (click)="saveSession(reminder.id)">Save</button>
+              <button (click)="cancelEdit()">Cancel</button>
+            </div>
+            <ng-template #viewMode>
+              <div class="session-details">
+                <strong>{{ reminder.title }}</strong> - {{ reminder.description }} on {{ reminder.date }}
+                <button class="edit-event" (click)="editSession(reminder.id)">Edit</button>
+                <button class="delete-event" (click)="deleteEvent(reminder.id)">Delete</button>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+  
