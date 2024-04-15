@@ -5,6 +5,8 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { HomepageComponent } from './pages/homepage/homepage.component'; // Adjust the path as per your project structure
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
+import { NoticeBoardComponent } from './pages/notice-board/notice-board.component';
+
 
 
 const routes: Routes = [
@@ -34,9 +36,16 @@ const routes: Routes = [
     component: TimetableComponent
   },
   {
+    path: 'notice-board',
+    component: NoticeBoardComponent
+  },
+  
+
+  {
     path: '**',
     redirectTo: 'login'
   }
+  
 ];
 
 @NgModule({

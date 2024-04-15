@@ -1,46 +1,42 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-//import { AngularFireAuth } from '@angular/fire/auth';
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent  implements OnInit {
+export class LoginComponent implements OnInit {
 
-   // Define a FormControl named passwordControl for handling the username input
-  passwordControl:FormControl = new FormControl('', Validators.required) //need to work on username and password validator instead of having separate!!!!
+  // FormControl for username input with validation for required field
   usernameControl: FormControl = new FormControl('', Validators.required);
+   // FormControl for password input with validation for required field
+  passwordControl: FormControl = new FormControl('', Validators.required);
+  errorMessage: string = '';   // Variable to store error message
 
-  errorMessage: string ='';
-
-  constructor(private authService: AuthService,private router: Router) { }
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-   
   }
 
-  //method to handle login
-  login(){
-    console.log('Login button clicked');
-
-    const unsername = this.usernameControl.value;
+  // Method to handle login process
+  async login() {
+    const username = this.usernameControl.value;
     const password = this.passwordControl.value;
 
-    //now call the authentication service to validate the credentials
-    const isAuthenticated= this.authService.authenticate(unsername,password);
-    
-    if(isAuthenticated){
-      this.router.navigate(['home']); //if succesful navigate to the homepage
-    }else{
-      this.errorMessage='Invalid username and password'; //if authentication failed display the error message
+    try {
+      // Retrieve username and password values from form controls
+      const result = await this.afAuth.signInWithEmailAndPassword(username, password);
+      this.router.navigate(['home']); // If successful, navigate to home page
+    } catch (error) {
+      // If an error occurs during sign-in, log the error and display error message
+      console.error('Error signing in:', error);
+      this.errorMessage = 'Invalid username and password';
     }
-
   }
-
 }

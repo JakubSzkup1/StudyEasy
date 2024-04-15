@@ -1,0 +1,119 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.notice-board-container, .notices-section {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border: 1px solid #ddd;
+  background-color: #fff;
+  margin-bottom: 20px;
+  max-width: 800px;
+  width: 100%;
+  align-self: center; /* Centers the component */
+}
+
+.header {
+  padding: 10px 20px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+
+.form-section {
+  padding: 20px;
+}
+
+.notices-section {
+  padding: 20px;
+  ul {
+    list-style-type: none; /* Removes bullet points */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Initiates a flex container */
+    flex-wrap: wrap; /* Allows items to wrap */
+    gap: 10px; /* Spacing between items */
+  }
+}
+
+input[type="text"], textarea {
+  width: calc(100% - 22px); /* Adjusts width to include padding and borders */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 0;
+}
+
+button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.notice {
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Separates individual notices */
+  flex: 1; 
+  min-width: calc(33.333% - 10px); /* For three notices per row */
+  max-width: calc(33.333% - 10px); /* Maximum width */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
+
+.notice:last-child {
+  border-bottom: none; /* No border for the last notice */
+}
+
+.notice h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 18px;
+}
+
+.notice p {
+  color: #555;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+ 
+}
+
+.tag-important {
+  @extend .tag-base;
+  background-color: #ff6347; // Orange
+}
+
+.tag-urgent {
+  @extend .tag-base;
+  background-color: #ffd700; // Gold
+  color: #000000; // Black
+}
+
+.tag-general {
+  @extend .tag-base;
+  background-color: #20b2aa; // Light Green
+}
+
+.tag-announcement {
+  @extend .tag-base;
+  background-color: #4169e1; // RoyalBlue
+}
+
+.tag-base {
+  display: inline-block;
+  padding: 4px 8px;
+  margin-right: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #ffffff; // White
+}
+
