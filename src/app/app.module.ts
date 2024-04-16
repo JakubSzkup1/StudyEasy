@@ -25,7 +25,7 @@ import { NoticeBoardComponent } from './pages/notice-board/notice-board.componen
 import { MilestoneComponent } from './pages/milestones/milestones.component';
 import { TaskPanelComponent } from './task-panel/task-panel.component';
 import { WeeklyTimetableComponent } from './pages/weekly-timetable/weekly-timetable.component';
-import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -58,7 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule, // Add FormsModule to imports
-    HttpClientModule
+    
     
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
