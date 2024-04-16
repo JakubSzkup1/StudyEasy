@@ -24,7 +24,8 @@ import { TimetableComponent } from './pages/timetable/timetable.component';
 import { NoticeBoardComponent } from './pages/notice-board/notice-board.component';
 import { MilestoneComponent } from './pages/milestones/milestones.component';
 import { TaskPanelComponent } from './task-panel/task-panel.component';
-
+import { WeeklyTimetableComponent } from './pages/weekly-timetable/weekly-timetable.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -41,7 +42,9 @@ import { TaskPanelComponent } from './task-panel/task-panel.component';
     TimetableComponent,
     NoticeBoardComponent,
     MilestoneComponent,
-    TaskPanelComponent
+    TaskPanelComponent,
+    WeeklyTimetableComponent
+    
    
 
   ],
@@ -55,6 +58,7 @@ import { TaskPanelComponent } from './task-panel/task-panel.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule, // Add FormsModule to imports
+    HttpClientModule
     
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
