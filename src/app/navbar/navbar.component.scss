@@ -1,40 +1,47 @@
 nav {
-    background-color:#444546;
-    padding: 10px; //Padding around the nav bar
-
-
+    background-color: #444546;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    
+  
     ul {
-        list-style-type: none; //This removes the bullet points from the list
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: space-between;
-
-        li{
-            margin-right: 10px; //horizontal display
-            display:inline; //Spacing between the list items
-        }
-
-        a{
-            color: white;
-            padding: 5px 10px;
-            text-decoration: none;
-            border-radius: 5px;
-
-            &:hover{
-                background-color: #19747E;
-            }
-        }
-
-        li:last-child{
-            margin-left: auto;
-        }
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center; /* Align items vertically */
+    }
+  
+    li {
+      margin-right: 20px; /* Increase spacing between list items */
+    }
+  
+    a {
+      color: white;
+      padding: 10px 15px; /* Increase padding for better clickability */
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s; /* Smooth transition on hover */
+  
+      &:hover {
+        background-color: #19747e; /* Darker color on hover */
+      }
+    }
+  
+    li:last-child {
+      margin-left: auto; /* Push the last item to the right */
+    }
+  
+    .navbar-logo {
+       
+      width: 50px;
+      height: auto;
+      margin-right: 10px;
     }
 
-    .navbar-logo {
-        width: 50px; /* Adjust the width of the logo as needed */
-        height: auto; /* Maintain aspect ratio */
-        margin-right: 10px; /* Adjust spacing between the logo and navigation links */
+    .login-logout {
+        margin-left: auto; /* Pushes the login/logout item to the far right */
       }
-
-}
+  }
+  

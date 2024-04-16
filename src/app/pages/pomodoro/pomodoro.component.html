@@ -2,6 +2,7 @@
 <app-navbar></app-navbar>
 <div class="pomodoro-container">
   <h1 class="timer">{{ formatTime() }}</h1>
+ 
 
  
 
@@ -12,12 +13,21 @@
   </div>
   <button (click)="startPauseTimer()" class="control-button">{{ isPaused ? 'Start' : 'Pause' }}</button>
   <button (click)="resetTimer()" class="control-button">Reset</button>
+ 
 </div>
 
+
+
 <div class="info-text">
+  
+  
   <h2 class="info-title">About the Pomodoro Technique</h2>
   <p>The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. It uses a timer to break work into intervals, traditionally 25 minutes in length, separated by short breaks.</p>
   <p>During each Pomodoro (the 25-minute work interval or whatever you decide!), you focus solely on a single task, aiming to complete it by the end of the Pomodoro. After each Pomodoro, take a short break to rest and recharge.</p>
   <p>By breaking work into manageable intervals and incorporating regular breaks, the Pomodoro Technique can help improve focus, productivity, and overall work efficiency.</p>
+
+  <app-task-panel></app-task-panel>
 </div>
+
 </div>
+

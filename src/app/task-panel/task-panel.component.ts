@@ -6,13 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./task-panel.component.scss'],
 })
 export class TaskPanelComponent {
-  newTask: string = ''; // Declare newTask property
-  tasks: string[] = []; // Declare tasks property
+  newTask: string = ''; //Declare newTask property
+  tasks: string[] = []; //Declare tasks property
 
   addTask() {
     if (this.newTask.trim() !== '') {
       this.tasks.push(this.newTask);
-      this.newTask = ''; // Reset newTask after adding task
+      this.newTask = ''; //Reset newTask after adding task
     }
   }
 }

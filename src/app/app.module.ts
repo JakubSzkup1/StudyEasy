@@ -23,6 +23,7 @@ import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { NoticeBoardComponent } from './pages/notice-board/notice-board.component';
 import { MilestoneComponent } from './pages/milestones/milestones.component';
+import { TaskPanelComponent } from './task-panel/task-panel.component';
 
 
 
@@ -39,7 +40,8 @@ import { MilestoneComponent } from './pages/milestones/milestones.component';
     PomodoroComponent,
     TimetableComponent,
     NoticeBoardComponent,
-    MilestoneComponent
+    MilestoneComponent,
+    TaskPanelComponent
    
 
   ],
