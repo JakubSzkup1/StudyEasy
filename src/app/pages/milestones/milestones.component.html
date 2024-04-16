@@ -1,0 +1,31 @@
+<!-- milestone.component.html -->
+<div class="milestone-container">
+  <h2>Milestones</h2>
+
+  <!-- Form for adding a new milestone -->
+  <div class="form section">
+    <!-- Input fields for entering milestone details -->
+    <input type="text" [(ngModel)]="newMilestone.title" placeholder="Title" />
+    <textarea [(ngModel)]="newMilestone.description" placeholder="Description"></textarea>
+    <input type="date" [(ngModel)]="newMilestone.date" placeholder="Date" />
+    <input type="time" [(ngModel)]="newMilestone.time" placeholder="Time" />
+    <!-- Button to add the milestone -->
+    <button (click)="addMilestone()">Add Milestone</button>
+  </div>
+
+  <!-- Display existing milestones -->
+  <div class="milestones-section">
+    <ul>
+      <!-- Loop through existing milestones and display each -->
+      <li *ngFor="let milestone of milestones">
+        <h3>{{ milestone.title }}</h3> 
+        <p>{{ milestone.description }}</p>
+        <p>Date: {{ milestone.date }}, Time: {{ milestone.time }}</p>
+        <!-- Button to delete the milestone -->
+        <button (click)="milestone.id && deleteMilestone(milestone.id)">Delete</button>
+
+      </li>
+    </ul>
+  </div>
+</div>
+

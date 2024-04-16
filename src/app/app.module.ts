@@ -22,7 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { NoticeBoardComponent } from './pages/notice-board/notice-board.component';
-
+import { MilestoneComponent } from './pages/milestones/milestones.component';
 
 
 
@@ -38,7 +38,8 @@ import { NoticeBoardComponent } from './pages/notice-board/notice-board.componen
     NavbarComponent,
     PomodoroComponent,
     TimetableComponent,
-    NoticeBoardComponent
+    NoticeBoardComponent,
+    MilestoneComponent
    
 
   ],

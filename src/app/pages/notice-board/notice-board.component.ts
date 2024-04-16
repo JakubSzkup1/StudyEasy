@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Notice, NoticeService } from 'src/app/services/notice.service';
 
 
+
+
+
 @Component({
   selector: 'app-notice-board',
   templateUrl: './notice-board.component.html',
@@ -17,6 +20,8 @@ export class NoticeBoardComponent implements OnInit {
   selectedTag: string = ''; //String to store selected tags
   selectedFilterTag: string = ''; //String store selected filter tag
   filteredNotices: Notice[]=[]; //Array to store filtered notices
+
+  
 
   //Constructor for the NoticeService dependency
   constructor(private noticeService: NoticeService) {}
@@ -58,6 +63,15 @@ export class NoticeBoardComponent implements OnInit {
   resetFilter() {
     this.selectedFilterTag = ''; // Reset selected tag
     this.filteredNotices = this.notices; // Display all notices
+  }
+
+  //Function to delete a notice
+  deleteNotice(noticeId:string) {
+    this.noticeService.deleteNotice(noticeId).then(()=>{
+      console.log('Notice deleted successfully');
+    }).catch(error => {
+        console.error('Error deleting notice:', error)
+    });
   }
 
 }

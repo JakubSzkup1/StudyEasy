@@ -7,14 +7,20 @@ export interface Notice {
   title: string;
   message: string;
   tags?: string[]; //Tags property
+  
 }
+
+
 
 //This is where all the firebase backend happens for retrieving and getting data
 @Injectable({
   providedIn: 'root',
 })
 export class NoticeService {
+  
   constructor(private firestore: AngularFirestore) {}
+
+  
 
   //Add notices to firebase
   addNotice(notice: Notice) {
@@ -25,6 +31,14 @@ export class NoticeService {
   getNotices(): Observable<Notice[]> {
     return this.firestore.collection<Notice>('notices').valueChanges({ idField: 'id' });
   }
+
+  //Delete notice from firebase
+  deleteNotice(noticeID:string){
+    return this.firestore.collection('notices').doc(noticeID).delete();
+
+  }
+
+
 
   // more methods for updating will be added here (updating & deleting etc.)
   
