@@ -6,6 +6,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component'; // Adju
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { NoticeBoardComponent } from './pages/notice-board/notice-board.component';
+import { WeeklyTimetableComponent } from './pages/weekly-timetable/weekly-timetable.component';
 
 
 
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'notice-board',
     component: NoticeBoardComponent
+  },
+  {
+    path:'weekly-timetable',
+    component: WeeklyTimetableComponent
   },
   
 

@@ -1,3 +1,18 @@
-<p>
-  weekly-timetable works!
-</p>
+<!-- Display Timetables -->
+<ul>
+  <li *ngFor="let timetable of timetables">
+    {{ timetable.day }} - {{ timetable.time }} - {{ timetable.subject }}
+    <button (click)="selectTimetable(timetable)">Edit</button>
+    <button (click)="deleteTimetable(timetable.id)">Delete</button>
+  </li>
+</ul>
+
+<!-- Add/Edit Timetable Form -->
+<form (ngSubmit)="saveTimetable()">
+  <input type="text" [(ngModel)]="selectedTimetable.day" name="day" placeholder="Day">
+  <input type="text" [(ngModel)]="selectedTimetable.time" name="time" placeholder="Time">
+  <input type="text" [(ngModel)]="selectedTimetable.subject" name="subject" placeholder="Subject">
+  <button *ngIf="hasSelectedTimetable" (click)="updateTimetable()" type="submit">Update</button>
+  <button type="submit" (click)="saveTimetable()">Add</button>
+</form>
+
