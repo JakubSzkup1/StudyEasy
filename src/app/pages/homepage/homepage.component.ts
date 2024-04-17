@@ -7,6 +7,13 @@ interface Reminder {
   description: string;
 }
 
+interface Exam {
+  id: number;
+  subject: string;
+  date: string;
+  time: string;
+}
+
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -34,12 +41,17 @@ export class HomepageComponent implements OnInit {
 
   dayNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
+  exams: Exam[] = []; // Array to hold upcoming exams
+  newExam: Exam = { id: 0, subject: '', date: '', time: '' }; // New exam object for adding
+
   constructor() {
     this.generateYears();
     this.showCalendar(this.selectedMonth, this.selectedYear);
   }
 
   ngOnInit(): void {
+    // Logic for component initialization
+    // ...
   }
 
   generateYears(): void {
@@ -50,6 +62,7 @@ export class HomepageComponent implements OnInit {
   }
 
   addEvent(): void {
+    // Logic for adding study session
     if (this.eventDate && this.eventTitle) {
       const id = this.reminders.length + 1;
       const newReminder: Reminder = {
@@ -71,8 +84,9 @@ export class HomepageComponent implements OnInit {
       this.eventDescription = '';
     }
   }
-  
+
   markSelectedDate(day: number, month: number, year: number): void {
+    // Logic for marking selected date
     for (const week of this.weeks) {
       for (const date of week) {
         if (date.date === day && date.month === month && date.year === year) {
@@ -82,9 +96,9 @@ export class HomepageComponent implements OnInit {
       }
     }
   }
-  
 
   deleteEvent(id: number): void {
+    // Logic for deleting study session
     const index = this.reminders.findIndex(reminder => reminder.id === id);
     if (index !== -1) {
       this.reminders.splice(index, 1);
@@ -93,6 +107,7 @@ export class HomepageComponent implements OnInit {
   }
 
   previous(): void {
+    // Logic for navigating to previous month
     if (this.selectedMonth === 0) {
       this.selectedMonth = 11;
       this.selectedYear--;
@@ -103,6 +118,7 @@ export class HomepageComponent implements OnInit {
   }
 
   next(): void {
+    // Logic for navigating to next month
     if (this.selectedMonth === 11) {
       this.selectedMonth = 0;
       this.selectedYear++;
@@ -113,19 +129,23 @@ export class HomepageComponent implements OnInit {
   }
 
   jump(): void {
+    // Logic for jumping to selected month and year
     this.showCalendar(this.selectedMonth, this.selectedYear);
   }
 
   isToday(day: any): boolean {
+    // Logic for checking if date is today
     const today = new Date();
     return day.year === today.getFullYear() && day.month === today.getMonth() && day.date === today.getDate();
   }
 
   getDaysInMonth(month: number, year: number): number {
+    // Logic for getting number of days in month
     return new Date(year, month + 1, 0).getDate();
   }
 
   showCalendar(month: number, year: number): void {
+    // Logic for displaying calendar
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = this.getDaysInMonth(month, year);
     const monthAndYear = this.months[month] + ' ' + year;
@@ -158,12 +178,14 @@ export class HomepageComponent implements OnInit {
   }
 
   selectDate(day: any): void {
+    // Logic for selecting date
     if (day.date !== null) {
       console.log('Selected Date:', day);
     }
   }
 
   getRemindersForDay(date: number, month: number, year: number): Reminder[] {
+    // Logic for getting reminders for a specific date
     return this.reminders.filter(reminder => {
       const reminderDate = new Date(reminder.date);
       return reminderDate.getDate() === date && reminderDate.getMonth() === month && reminderDate.getFullYear() === year;
@@ -171,17 +193,22 @@ export class HomepageComponent implements OnInit {
   }
 
   displayReminders(): void {
+    // Logic for displaying reminders
+    // ...
   }
 
   hasEvent(day: any): boolean {
+    // Logic for checking if a day has events
     return day.reminders && day.reminders.length > 0;
   }
 
   getEvents(day: any): Reminder[] {
+    // Logic for getting events for a specific day
     return day.reminders;
   }
 
   editSession(id: number): void {
+    // Logic for editing session
     const reminder = this.reminders.find(r => r.id === id);
     if (!reminder) return;
 
@@ -191,6 +218,7 @@ export class HomepageComponent implements OnInit {
   }
 
   saveSession(id: number): void {
+    // Logic for saving session after edit
     const reminder = this.reminders.find(r => r.id === id);
     if (!reminder) return;
 
@@ -200,6 +228,29 @@ export class HomepageComponent implements OnInit {
   }
 
   cancelEdit(): void {
+    // Logic for canceling edit mode
     this.editingSessionId = null;
+  }
+
+  addExam(): void {
+    // Logic for adding new exam
+    if (this.newExam.subject && this.newExam.date && this.newExam.time) {
+      this.newExam.id = this.exams.length + 1;
+      this.exams.push({ ...this.newExam });
+      this.newExam = { id: 0, subject: '', date: '', time: '' }; // Reset newExam object
+    }
+  }
+
+  editExam(exam: Exam): void {
+    // Logic for editing exam
+    // Implement as needed
+  }
+
+  deleteExam(exam: Exam): void {
+    // Logic for deleting exam
+    const index = this.exams.findIndex(e => e.id === exam.id);
+    if (index !== -1) {
+      this.exams.splice(index, 1);
+    }
   }
 }
