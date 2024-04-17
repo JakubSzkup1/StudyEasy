@@ -1,73 +1,84 @@
 .main-container {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   max-height: 100vh;
-  display: flex;
-  flex-direction: column; /* Arrange children vertically */
-  overflow-y: auto;
+
+  .content-container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+
+    .info-text {
+      flex: 1;
+      border: 2px solid #434344;
+      padding: 10px;
+      margin: 20px;
+      width: 300px;
+      text-align: justify;
+
+      .info-title {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin: 10px 0;
+      }
+    }
+
+    .pomodoro-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #434344;
+      padding: 20px;
+      margin: 20px;
+      width: 400px;
+      height: 300px;
+
+      .timer {
+        font-size: 3em;
+        color: #0f0f0f;
+        margin: 0 auto;
+      }
+
+      .time-input {
+        margin-bottom: 10px;
+
+        label {
+          margin-right: 5px;
+        }
+
+        input {
+          margin-right: 5px;
+        }
+      }
+
+      .control-button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        background-color: #3481a5;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #265c7d;
+        }
+      }
+    }
+
+    .milestones-container {
+      flex: 1;
+      border: 2px solid #434344;
+      padding: 10px;
+      margin: 20px;
+      width: 300px;
+    }
+  }
 }
-
-.pomodoro-container {
-    text-align: center;
-    border: 2px solid #434344; 
-    padding: 20px;
-     width: 400px;
-     height: 300px;
-     display: flex; /* Use flexbox */
-     flex-direction: column;  /* Stacks items vertically */
-     justify-content: center; /* Center items horizontally */
-     align-items: center; /* Center items vertically */
-     margin:0 auto; /* Automatically center the container horizontally */
-     margin-top: 20px;
-     margin-bottom: 30px;
-  }
-
-  .info-text {
-    border: 2px solid #434344; 
-    padding: 10px; 
-    margin-bottom: 10px; /* Add some margin below the text */
-    text-align: justify; 
-    width: 300px;
-    margin-right: auto;
-    margin-left: 50px;
-    margin-top: -310px;
-    width: 700px;
-    height: 900px;
-    
-  }
-  
-  .info-text p {
-    margin: 10px 0; /* Add margin between paragraphs */
-  }
-
-  .info-title {
-    font-size: 1.2em; 
-    margin-bottom: 10px; 
-  }
-  
-  .timer {
-    font-size: 4em;
-    color: #0f0f0f;
-    margin:0 auto;
-   
-    
-  }
-  .timer-input {
-    margin-bottom: 10px;
-  }
-  
-  .control-button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    background-color: #3481a5;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-  .control-button:hover{
-    background-color:#265c7d; /*Darkens the background color when hovered*/
-  }
-  
- 

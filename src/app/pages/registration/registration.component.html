@@ -1,32 +1,31 @@
-<div class="registeration-container">
-  <div class="registeration-content">
+<div class="registration-container">
+  <div class="registration-content">
 
-    <!-- https://v7.material.angular.io/components/form-field/overview -->
-
+     <!-- Logo -->
+     <!-- <img src= "src/assets/logo1.png" alt="StudyEasy Logo" class="logo"> -->
+    
     <p class="Title-welcome">Welcome To StudyEasy! </p>
     <p class="Title-login">Register Here!</p>
     
-    <!--Email-->
-    <mat-form-field appearance="outline"> <!--give the input box an outline-->  
+    <!-- Email -->
+    <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-        <!-- Input field with a form control binding to passwordControl -->
-        <input  [formControl]="emailControl" matInput type="email">  <!-- matInput include error messages, hitn text etc.-->
-        <mat-error *ngIf="emailControl.hasError('required')">Email is required</mat-error>
+      <input [formControl]="emailControl" matInput type="email">
+      <mat-error *ngIf="emailControl.hasError('required')">Email is required</mat-error>
     </mat-form-field>
 
-     <!--Password-->
-     <mat-form-field appearance="outline"> 
+    <!-- Password -->
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
       <input [formControl]="passwordControl" matInput type="password">
       <mat-error *ngIf="passwordControl.hasError('required')">Password is required</mat-error>
-  </mat-form-field>
+    </mat-form-field>
 
-  <!-- Register Button -->
-  <button mat-raised-button color="primary" (click)="register()">Register</button>
+    <!-- Register Button -->
+    <button mat-raised-button color="primary" (click)="register()">Register</button>
 
-  <p class="error-message" *ngIf="errorMessage">{{errorMessage}}</p>
-
-
-
+    <!-- Error Message -->
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 
   </div>
 </div>

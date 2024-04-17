@@ -40,10 +40,7 @@ const routes: Routes = [
     path: 'notice-board',
     component: NoticeBoardComponent
   },
-  {
-    path:'weekly-timetable',
-    component: WeeklyTimetableComponent
-  },
+ 
   
 
   {
