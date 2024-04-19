@@ -4,6 +4,7 @@ interface Reminder {
   id: number;
   date: string;
   title: string;
+  time: string;
   description: string;
 }
 
@@ -22,6 +23,7 @@ interface Exam {
 export class HomepageComponent implements OnInit {
   eventDate: string = '';
   eventTitle: string = '';
+  eventTime: string = '';
   eventDescription: string = '';
   currentDate: Date = new Date();
   selectedMonth: number = this.currentDate.getMonth();
@@ -63,25 +65,27 @@ export class HomepageComponent implements OnInit {
 
   addEvent(): void {
     // Logic for adding study session
-    if (this.eventDate && this.eventTitle) {
+    if (this.eventDate && this.eventTitle && this.eventTime) {
       const id = this.reminders.length + 1;
       const newReminder: Reminder = {
         id: id,
         date: this.eventDate,
         title: this.eventTitle,
-        description: this.eventDescription
+        description: this.eventDescription,
+        time: this.eventTime 
       };
       this.reminders.push(newReminder);
-  
+      
       const selectedDate = new Date(this.eventDate);
       const day = selectedDate.getDate();
       const month = selectedDate.getMonth();
       const year = selectedDate.getFullYear();
       this.markSelectedDate(day, month, year);
-  
+      
       this.eventDate = '';
       this.eventTitle = '';
       this.eventDescription = '';
+      this.eventTime = ''; 
     }
   }
 
@@ -243,7 +247,13 @@ export class HomepageComponent implements OnInit {
 
   editExam(exam: Exam): void {
     // Logic for editing exam
-    // Implement as needed
+    const index = this.exams.findIndex(e => e.id === exam.id);
+    if (index !== -1) {
+      // Assuming you have a form or modal to edit exam details
+      // Implement the necessary logic here to update the exam object in the array
+      // For example:
+      this.exams[index] = exam; // Assuming exam contains the updated details
+    }
   }
 
   deleteExam(exam: Exam): void {

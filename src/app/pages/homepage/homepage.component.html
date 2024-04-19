@@ -1,88 +1,56 @@
 <app-navbar></app-navbar>
 <div class="wrapper">
-  <div class="study-calendar-section d-flex">
-    <!-- Study Session Form on the left -->
-    <div class="event-section">
+  <div class="session-exam-container">
+    <!-- Add Study Session Section -->
+    <div class="section">
       <h3>Add Study Session</h3>
-      <input type="date" [(ngModel)]="eventDate">
       <input type="text" [(ngModel)]="eventTitle" placeholder="Subject">
-      <input type="text" [(ngModel)]="eventDescription" placeholder="Time">
-      <button (click)="addEvent()">Add</button>
+      <input type="date" [(ngModel)]="eventDate">
+      <input type="time" [(ngModel)]="eventTime" placeholder="Time">
+      <button class="add-session-button" (click)="addEvent()">Add Session</button>
     </div>
 
-    <!-- Calendar on the right -->
-    <div class="calendar-container">
-      <h3 id="monthAndYear">{{ monthAndYear }}</h3>
-      <div class="button-container-calendar">
-        <button (click)="previous()">‹</button>
-        <button (click)="next()">›</button>
-      </div>
-      <table class="table-calendar">
-        <thead>
-          <tr>
-            <th *ngFor="let dayName of dayNames">{{ dayName }}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let week of weeks">
-            <td *ngFor="let day of week" [class.is-today]="isToday(day)" (click)="selectDate(day)">
-              <span>{{ day.date }}</span>
-              <div *ngIf="hasEvent(day)" class="event-indicator"></div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="footer-container-calendar">
-        <label for="month">Jump To:</label>
-        <select id="month" [(ngModel)]="selectedMonth" (change)="jump()">
-          <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
-        </select>
-        <select id="year" [(ngModel)]="selectedYear" (change)="jump()">
-          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-        </select>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="study-session-grid">
-  <h3>Study Sessions</h3>
-  <div class="grid-container">
-    <div class="grid-item" *ngFor="let reminder of reminders">
-      <div *ngIf="editingSessionId === reminder.id; else viewMode">
-        <input type="text" [(ngModel)]="tempEventTitle">
-        <input type="text" [(ngModel)]="tempEventDescription">
-        <button (click)="saveSession(reminder.id)">Save</button>
-        <button (click)="cancelEdit()">Cancel</button>
-      </div>
-      <ng-template #viewMode>
-        <div class="session-details">
-          <strong>{{ reminder.title }}</strong> - {{ reminder.description }} on {{ reminder.date }}
-          <button class="edit-event" (click)="editSession(reminder.id)">Edit</button>
-          <button class="delete-event" (click)="deleteEvent(reminder.id)">Delete</button>
+    <!-- Study Sessions List -->
+    <div class="section">
+      <h3>Study Sessions</h3>
+      <div class="list-container">
+        <div *ngFor="let reminder of reminders" class="list-item">
+          <div class="session-details">
+            <span>{{ reminder.title }} - {{ reminder.description }} on {{ reminder.date }} {{ reminder.time }}</span>
+            <div class="button-container">
+              <button class="edit-event" (click)="editSession(reminder.id)">Edit</button>
+              <button class="delete-event" (click)="deleteEvent(reminder.id)">Delete</button>
+            </div>
+          </div>
         </div>
-      </ng-template>
+      </div>
     </div>
   </div>
-</div>
+  
+  <div class="session-exam-container">
+    <!-- Add Exam Section -->
+    <div class="section">
+      <h3>Add Upcoming Exam</h3>
+      <input type="text" [(ngModel)]="newExam.subject" placeholder="Subject">
+      <input type="date" [(ngModel)]="newExam.date">
+      <input type="time" [(ngModel)]="newExam.time">
+      <button class="add-exam-button" (click)="addExam()">Add Upcoming Exam</button>
+    </div>
 
-<!-- Upcoming Exams Section -->
-<div class="upcoming-exams-section">
-  <h3>Upcoming Exams</h3>
-  <div class="grid-container">
-    <!-- Upcoming exam items -->
-    <div class="grid-item" *ngFor="let exam of exams">
-      <div>{{ exam.subject }} - {{ exam.date }} at {{ exam.time }}</div>
-      <button class="edit-event" (click)="editExam(exam)">Edit</button>
-      <button class="delete-event" (click)="deleteExam(exam)">Delete</button>
+    <!-- Upcoming Exams List -->
+    <div class="section">
+      <h3>Upcoming Exams</h3>
+      <div class="list-container">
+        <div *ngFor="let exam of exams" class="list-item">
+          <div class="exam-details">
+            <span>{{ exam.subject }} - {{ exam.date }} at {{ exam.time }}</span>
+            <div class="button-container">
+              <button class="edit-event" (click)="editExam(exam)">Edit</button>
+              <button class="delete-event" (click)="deleteExam(exam)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <!-- Add new exam form -->
-  <div class="event-section">
-    <h3>Add Exam</h3>
-    <input type="text" [(ngModel)]="newExam.subject" placeholder="Subject">
-    <input type="date" [(ngModel)]="newExam.date">
-    <input type="time" [(ngModel)]="newExam.time">
-    <button (click)="addExam()">Add Exam</button>
   </div>
 </div>
