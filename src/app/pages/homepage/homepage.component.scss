@@ -26,6 +26,7 @@ body, html {
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  margin-top: 20px; /* Adds space between sections */
 }
 
 h3 {
@@ -39,7 +40,7 @@ input[type="text"], input[type="date"], input[type="time"], button {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; // Ensures padding is included in width
+  box-sizing: border-box; 
 }
 
 button {
@@ -54,11 +55,13 @@ button {
 .list-container {
   margin-top: 20px;
   overflow-y: auto;
+  max-height: 200px; 
+  overflow-y: auto; /* Enables scrolling if content overflows */
 }
 
 .list-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; 
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #eee;
@@ -94,5 +97,12 @@ button {
   background-color: #dc3545; /* Red */
   &:hover {
     background-color: #bd2130; /* Darker shade of red on hover */
+  }
+}
+
+.complete-button {
+  background-color: #17a2b8; 
+  &:hover {
+    background-color: darken(#17a2b8, 5%);
   }
 }

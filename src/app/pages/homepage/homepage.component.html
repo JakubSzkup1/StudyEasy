@@ -27,6 +27,7 @@
             <div class="button-container">
               <button class="edit-button" (click)="editSession(reminder.id)">Edit</button>
               <button class="delete-button" (click)="deleteEvent(reminder.id)">Delete</button>
+              <button class="complete-button" (click)="completeSession(reminder.id)">Complete</button>
             </div>
           </div>
         </div>
@@ -61,9 +62,30 @@
             <div class="button-container">
               <button class="edit-button" (click)="editExam(exam.id)">Edit</button>
               <button class="delete-button" (click)="deleteExam(exam.id)">Delete</button>
+              <button class="complete-button" (click)="completeExam(exam.id)">Complete</button>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Completed Study Sessions -->
+  <div class="section">
+    <h3>Completed Sessions</h3>
+    <div class="list-container">
+      <div *ngFor="let completedReminder of completedReminders" class="list-item">
+        <span>{{ completedReminder.title }} - Completed on {{ completedReminder.date }} at {{ completedReminder.time }}</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Completed Exams -->
+  <div class="section">
+    <h3>Completed Exams</h3>
+    <div class="list-container">
+      <div *ngFor="let completedExam of completedExams" class="list-item">
+        <span>{{ completedExam.subject }} - Exam on {{ completedExam.date }} at {{ completedExam.time }}</span>
       </div>
     </div>
   </div>

@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 
 interface Reminder {
@@ -32,6 +33,7 @@ export class HomepageComponent implements OnInit {
   weeks: any[] = [];
   years: number[] = [];
   reminders: Reminder[] = [];
+  completedReminders: Reminder[] = [];
   months: string[] = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -41,19 +43,18 @@ export class HomepageComponent implements OnInit {
   tempEventTitle: string = '';
   tempEventDescription: string = '';
 
-  exams: Exam[] = []; // Array to hold upcoming exams
-  newExam: Exam = { id: 0, subject: '', date: '', time: '' }; // New exam object for adding
+  exams: Exam[] = [];
+  completedExams: Exam[] = [];
+  newExam: Exam = { id: 0, subject: '', date: '', time: '' };
   editingExamId: number | null = null;
 
   dayNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor() {
     this.generateYears();
-   
   }
 
   ngOnInit(): void {
-    // Logic for component initialization
   }
 
   generateYears(): void {
@@ -65,98 +66,122 @@ export class HomepageComponent implements OnInit {
 
   addEvent(): void {
     if (this.eventDate && this.eventTitle && this.eventTime) {
-      const id = this.reminders.length + 1;
+      const newId = this.reminders.length + 1;
       const newReminder: Reminder = {
-        id: id,
+        id: newId,
         date: this.eventDate,
         title: this.eventTitle,
         description: this.eventDescription,
-        time: this.eventTime 
+        time: this.eventTime
       };
       this.reminders.push(newReminder);
-      this.eventDate = '';
-      this.eventTitle = '';
-      this.eventDescription = '';
-      this.eventTime = ''; 
+      this.resetAddSessionForm();
     }
+  }
+
+  resetAddSessionForm(): void {
+    this.eventDate = '';
+    this.eventTitle = '';
+    this.eventTime = '';
+    this.eventDescription = '';
+  }
+
+  editSession(id: number): void {
+    this.editingSessionId = id;
+    const reminder = this.reminders.find(r => r.id === id);
+    if (reminder) {
+      this.tempEventTitle = reminder.title;
+      this.tempEventDescription = reminder.description;
+    }
+  }
+
+  saveSession(): void {
+    if (this.editingSessionId !== null) {
+      const index = this.reminders.findIndex(reminder => reminder.id === this.editingSessionId);
+      if (index !== -1) {
+        this.reminders[index].title = this.tempEventTitle;
+        this.reminders[index].description = this.tempEventDescription;
+        this.tempEventTitle = '';
+        this.tempEventDescription = '';
+      }
+      this.editingSessionId = null;
+    }
+  }
+
+  cancelEdit(): void {
+    this.editingSessionId = null;
+    this.tempEventTitle = '';
+    this.tempEventDescription = '';
   }
 
   deleteEvent(id: number): void {
     this.reminders = this.reminders.filter(reminder => reminder.id !== id);
   }
 
-  editSession(id: number): void {
-    const reminder = this.reminders.find(r => r.id === id);
-    if (reminder) {
-      this.editingSessionId = id;
-      this.tempEventTitle = reminder.title;
-      this.tempEventDescription = reminder.description;
+  completeSession(id: number): void {
+    const index = this.reminders.findIndex(reminder => reminder.id === id);
+    if (index !== -1) {
+      this.completedReminders.push(this.reminders[index]);
+      this.reminders.splice(index, 1);
     }
-  }
-  saveSession(): void {
-    if (this.editingSessionId !== null) {
-      const index = this.reminders.findIndex(reminder => reminder.id === this.editingSessionId);
-      if (index !== -1) {
-        this.reminders[index] = {
-          ...this.reminders[index],
-          title: this.reminders[index].title,
-          date: this.reminders[index].date,
-          time: this.reminders[index].time,
-          description: this.reminders[index].description // Assuming you also want to save the description
-        };
-        // Reset the editing state
-        this.editingSessionId = null;
-      }
-    }
-  }
-
-  cancelEdit(): void {
-    this.editingSessionId = null;
   }
 
   addExam(): void {
     if (this.newExam.subject && this.newExam.date && this.newExam.time) {
-      this.newExam.id = this.exams.length + 1;
-      this.exams.push({ ...this.newExam });
-      this.newExam = { id: 0, subject: '', date: '', time: '' }; // Reset newExam object
+      const newId = this.exams.length + 1;
+      const newExam: Exam = {
+        id: newId,
+        subject: this.newExam.subject,
+        date: this.newExam.date,
+        time: this.newExam.time
+      };
+      this.exams.push(newExam);
+      this.resetAddExamForm();
     }
   }
 
+  resetAddExamForm(): void {
+    this.newExam.subject = '';
+    this.newExam.date = '';
+    this.newExam.time = '';
+  }
+
   editExam(id: number): void {
+    this.editingExamId = id;
     const exam = this.exams.find(e => e.id === id);
     if (exam) {
-      this.editingExamId = id;
-      this.newExam = {...exam};
+      this.newExam.subject = exam.subject;
+      this.newExam.date = exam.date;
+      this.newExam.time = exam.time;
     }
   }
 
   saveExam(): void {
     if (this.editingExamId !== null) {
-      // Find the index of the exam being edited
       const index = this.exams.findIndex(exam => exam.id === this.editingExamId);
       if (index !== -1) {
-        // Update the exam at the found index
-        this.exams[index] = {
-          ...this.exams[index],
-          subject: this.newExam.subject,
-          date: this.newExam.date,
-          time: this.newExam.time
-        };
-        // Reset editing state
-        this.editingExamId = null;
-        this.newExam = { id: 0, subject: '', date: '', time: '' }; // Reset newExam object
+        this.exams[index].subject = this.newExam.subject;
+        this.exams[index].date = this.newExam.date;
+        this.exams[index].time = this.newExam.time;
       }
+      this.editingExamId = null;
     }
+  }
+
+  cancelExamEdit(): void {
+    this.editingExamId = null;
+    this.resetAddExamForm();
   }
 
   deleteExam(id: number): void {
     this.exams = this.exams.filter(exam => exam.id !== id);
   }
 
-
-
-cancelExamEdit(): void {
-  this.editingExamId = null; // Reset any editing flags or temporary data for exams
-}
-
+  completeExam(id: number): void {
+    const index = this.exams.findIndex(exam => exam.id === id);
+    if (index !== -1) {
+      this.completedExams.push(this.exams[index]);
+      this.exams.splice(index, 1);
+    }
+  }
 }
