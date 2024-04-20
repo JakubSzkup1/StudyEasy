@@ -41,19 +41,19 @@ export class HomepageComponent implements OnInit {
   tempEventTitle: string = '';
   tempEventDescription: string = '';
 
-  dayNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
   exams: Exam[] = []; // Array to hold upcoming exams
   newExam: Exam = { id: 0, subject: '', date: '', time: '' }; // New exam object for adding
+  editingExamId: number | null = null;
+
+  dayNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   constructor() {
     this.generateYears();
-    this.showCalendar(this.selectedMonth, this.selectedYear);
+   
   }
 
   ngOnInit(): void {
     // Logic for component initialization
-    // ...
   }
 
   generateYears(): void {
@@ -64,7 +64,6 @@ export class HomepageComponent implements OnInit {
   }
 
   addEvent(): void {
-    // Logic for adding study session
     if (this.eventDate && this.eventTitle && this.eventTime) {
       const id = this.reminders.length + 1;
       const newReminder: Reminder = {
@@ -75,13 +74,6 @@ export class HomepageComponent implements OnInit {
         time: this.eventTime 
       };
       this.reminders.push(newReminder);
-      
-      const selectedDate = new Date(this.eventDate);
-      const day = selectedDate.getDate();
-      const month = selectedDate.getMonth();
-      const year = selectedDate.getFullYear();
-      this.markSelectedDate(day, month, year);
-      
       this.eventDate = '';
       this.eventTitle = '';
       this.eventDescription = '';
@@ -89,155 +81,40 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  markSelectedDate(day: number, month: number, year: number): void {
-    // Logic for marking selected date
-    for (const week of this.weeks) {
-      for (const date of week) {
-        if (date.date === day && date.month === month && date.year === year) {
-          date.hasEvent = true;
-          return;
-        }
-      }
-    }
-  }
-
   deleteEvent(id: number): void {
-    // Logic for deleting study session
-    const index = this.reminders.findIndex(reminder => reminder.id === id);
-    if (index !== -1) {
-      this.reminders.splice(index, 1);
-      this.showCalendar(this.selectedMonth, this.selectedYear);
-    }
-  }
-
-  previous(): void {
-    // Logic for navigating to previous month
-    if (this.selectedMonth === 0) {
-      this.selectedMonth = 11;
-      this.selectedYear--;
-    } else {
-      this.selectedMonth--;
-    }
-    this.showCalendar(this.selectedMonth, this.selectedYear);
-  }
-
-  next(): void {
-    // Logic for navigating to next month
-    if (this.selectedMonth === 11) {
-      this.selectedMonth = 0;
-      this.selectedYear++;
-    } else {
-      this.selectedMonth++;
-    }
-    this.showCalendar(this.selectedMonth, this.selectedYear);
-  }
-
-  jump(): void {
-    // Logic for jumping to selected month and year
-    this.showCalendar(this.selectedMonth, this.selectedYear);
-  }
-
-  isToday(day: any): boolean {
-    // Logic for checking if date is today
-    const today = new Date();
-    return day.year === today.getFullYear() && day.month === today.getMonth() && day.date === today.getDate();
-  }
-
-  getDaysInMonth(month: number, year: number): number {
-    // Logic for getting number of days in month
-    return new Date(year, month + 1, 0).getDate();
-  }
-
-  showCalendar(month: number, year: number): void {
-    // Logic for displaying calendar
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = this.getDaysInMonth(month, year);
-    const monthAndYear = this.months[month] + ' ' + year;
-    const calendar = [];
-
-    let date = 1;
-    for (let i = 0; i < 6; i++) {
-      const week = [];
-      for (let j = 0; j < 7; j++) {
-        if (i === 0 && j < firstDay) {
-          week.push({ date: null, month, year, monthName: this.months[month] });
-        } else if (date > daysInMonth) {
-          break;
-        } else {
-          const remindersForDay = this.getRemindersForDay(date, month, year);
-          week.push({ date, month, year, monthName: this.months[month], reminders: remindersForDay });
-          date++;
-        }
-      }
-      calendar.push(week);
-      if (date > daysInMonth) {
-        break;
-      }
-    }
-
-    this.selectedMonth = month;
-    this.selectedYear = year;
-    this.monthAndYear = monthAndYear;
-    this.weeks = calendar;
-  }
-
-  selectDate(day: any): void {
-    // Logic for selecting date
-    if (day.date !== null) {
-      console.log('Selected Date:', day);
-    }
-  }
-
-  getRemindersForDay(date: number, month: number, year: number): Reminder[] {
-    // Logic for getting reminders for a specific date
-    return this.reminders.filter(reminder => {
-      const reminderDate = new Date(reminder.date);
-      return reminderDate.getDate() === date && reminderDate.getMonth() === month && reminderDate.getFullYear() === year;
-    });
-  }
-
-  displayReminders(): void {
-    // Logic for displaying reminders
-    // ...
-  }
-
-  hasEvent(day: any): boolean {
-    // Logic for checking if a day has events
-    return day.reminders && day.reminders.length > 0;
-  }
-
-  getEvents(day: any): Reminder[] {
-    // Logic for getting events for a specific day
-    return day.reminders;
+    this.reminders = this.reminders.filter(reminder => reminder.id !== id);
   }
 
   editSession(id: number): void {
-    // Logic for editing session
     const reminder = this.reminders.find(r => r.id === id);
-    if (!reminder) return;
-
-    this.editingSessionId = id;
-    this.tempEventTitle = reminder.title;
-    this.tempEventDescription = reminder.description;
+    if (reminder) {
+      this.editingSessionId = id;
+      this.tempEventTitle = reminder.title;
+      this.tempEventDescription = reminder.description;
+    }
   }
-
-  saveSession(id: number): void {
-    // Logic for saving session after edit
-    const reminder = this.reminders.find(r => r.id === id);
-    if (!reminder) return;
-
-    reminder.title = this.tempEventTitle;
-    reminder.description = this.tempEventDescription;
-    this.editingSessionId = null; // Stop editing mode
+  saveSession(): void {
+    if (this.editingSessionId !== null) {
+      const index = this.reminders.findIndex(reminder => reminder.id === this.editingSessionId);
+      if (index !== -1) {
+        this.reminders[index] = {
+          ...this.reminders[index],
+          title: this.reminders[index].title,
+          date: this.reminders[index].date,
+          time: this.reminders[index].time,
+          description: this.reminders[index].description // Assuming you also want to save the description
+        };
+        // Reset the editing state
+        this.editingSessionId = null;
+      }
+    }
   }
 
   cancelEdit(): void {
-    // Logic for canceling edit mode
     this.editingSessionId = null;
   }
 
   addExam(): void {
-    // Logic for adding new exam
     if (this.newExam.subject && this.newExam.date && this.newExam.time) {
       this.newExam.id = this.exams.length + 1;
       this.exams.push({ ...this.newExam });
@@ -245,22 +122,41 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  editExam(exam: Exam): void {
-    // Logic for editing exam
-    const index = this.exams.findIndex(e => e.id === exam.id);
-    if (index !== -1) {
-      // Assuming you have a form or modal to edit exam details
-      // Implement the necessary logic here to update the exam object in the array
-      // For example:
-      this.exams[index] = exam; // Assuming exam contains the updated details
+  editExam(id: number): void {
+    const exam = this.exams.find(e => e.id === id);
+    if (exam) {
+      this.editingExamId = id;
+      this.newExam = {...exam};
     }
   }
 
-  deleteExam(exam: Exam): void {
-    // Logic for deleting exam
-    const index = this.exams.findIndex(e => e.id === exam.id);
-    if (index !== -1) {
-      this.exams.splice(index, 1);
+  saveExam(): void {
+    if (this.editingExamId !== null) {
+      // Find the index of the exam being edited
+      const index = this.exams.findIndex(exam => exam.id === this.editingExamId);
+      if (index !== -1) {
+        // Update the exam at the found index
+        this.exams[index] = {
+          ...this.exams[index],
+          subject: this.newExam.subject,
+          date: this.newExam.date,
+          time: this.newExam.time
+        };
+        // Reset editing state
+        this.editingExamId = null;
+        this.newExam = { id: 0, subject: '', date: '', time: '' }; // Reset newExam object
+      }
     }
   }
+
+  deleteExam(id: number): void {
+    this.exams = this.exams.filter(exam => exam.id !== id);
+  }
+
+
+
+cancelExamEdit(): void {
+  this.editingExamId = null; // Reset any editing flags or temporary data for exams
+}
+
 }

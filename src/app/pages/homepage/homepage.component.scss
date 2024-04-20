@@ -83,14 +83,14 @@ button {
   cursor: pointer;
 }
 
-.edit-event {
+.edit-button {
   background-color: #ffc107; /* Dark yellow */
   &:hover {
     background-color: #b28900; /* Darker shade of yellow on hover */
   }
 }
 
-.delete-event {
+.delete-button {
   background-color: #dc3545; /* Red */
   &:hover {
     background-color: #bd2130; /* Darker shade of red on hover */

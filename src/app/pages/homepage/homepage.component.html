@@ -7,7 +7,7 @@
       <input type="text" [(ngModel)]="eventTitle" placeholder="Subject">
       <input type="date" [(ngModel)]="eventDate">
       <input type="time" [(ngModel)]="eventTime" placeholder="Time">
-      <button class="add-session-button" (click)="addEvent()">Add Session</button>
+      <button class="add-button" (click)="addEvent()">Add Session</button>
     </div>
 
     <!-- Study Sessions List -->
@@ -15,18 +15,25 @@
       <h3>Study Sessions</h3>
       <div class="list-container">
         <div *ngFor="let reminder of reminders" class="list-item">
-          <div class="session-details">
+          <div *ngIf="editingSessionId === reminder.id">
+            <input type="text" [(ngModel)]="reminder.title" placeholder="Subject">
+            <input type="date" [(ngModel)]="reminder.date">
+            <input type="time" [(ngModel)]="reminder.time">
+            <button (click)="saveSession()">Save</button>
+            <button (click)="cancelEdit()">Cancel</button>
+          </div>
+          <div *ngIf="editingSessionId !== reminder.id">
             <span>{{ reminder.title }} - {{ reminder.description }} on {{ reminder.date }} {{ reminder.time }}</span>
             <div class="button-container">
-              <button class="edit-event" (click)="editSession(reminder.id)">Edit</button>
-              <button class="delete-event" (click)="deleteEvent(reminder.id)">Delete</button>
+              <button class="edit-button" (click)="editSession(reminder.id)">Edit</button>
+              <button class="delete-button" (click)="deleteEvent(reminder.id)">Delete</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
   <div class="session-exam-container">
     <!-- Add Exam Section -->
     <div class="section">
@@ -34,7 +41,7 @@
       <input type="text" [(ngModel)]="newExam.subject" placeholder="Subject">
       <input type="date" [(ngModel)]="newExam.date">
       <input type="time" [(ngModel)]="newExam.time">
-      <button class="add-exam-button" (click)="addExam()">Add Upcoming Exam</button>
+      <button class="add-button" (click)="addExam()">Add Upcoming Exam</button>
     </div>
 
     <!-- Upcoming Exams List -->
@@ -42,11 +49,18 @@
       <h3>Upcoming Exams</h3>
       <div class="list-container">
         <div *ngFor="let exam of exams" class="list-item">
-          <div class="exam-details">
+          <div *ngIf="editingExamId === exam.id">
+            <input type="text" [(ngModel)]="exam.subject" placeholder="Subject">
+            <input type="date" [(ngModel)]="exam.date">
+            <input type="time" [(ngModel)]="exam.time">
+            <button (click)="saveExam()">Save</button>
+            <button (click)="cancelExamEdit()">Cancel</button>
+          </div>
+          <div *ngIf="editingExamId !== exam.id">
             <span>{{ exam.subject }} - {{ exam.date }} at {{ exam.time }}</span>
             <div class="button-container">
-              <button class="edit-event" (click)="editExam(exam)">Edit</button>
-              <button class="delete-event" (click)="deleteExam(exam)">Delete</button>
+              <button class="edit-button" (click)="editExam(exam.id)">Edit</button>
+              <button class="delete-button" (click)="deleteExam(exam.id)">Delete</button>
             </div>
           </div>
         </div>
