@@ -1,10 +1,29 @@
 <app-navbar></app-navbar>
 <div class="container">
+  <h3 class="h3-noticeboard">Welcome to the Notice Board</h3>
 <div class="notice-board-container">  <!-- Container for the notice board -->
+  
   <!-- This section is for adding a new notice -->
   <div class ="header">
   <h2>Add a Notice- Keep Yourself Informed!</h2>
   </div>
+
+   <!-- Section for displaying existing notices -->
+<div class="notices-section">
+  <h2>Notices</h2>
+  <ul>
+     <!-- Loop through each notice and display its title and message -->
+     <li *ngFor="let notice of filteredNotices">
+      <h3>{{ notice.title }}</h3>
+      <p>{{ notice.message }}</p>
+      <p>
+        <span *ngFor="let tag of notice.tags" [class]="'tag-' + tag.toLowerCase()">{{ tag }}</span>
+      </p>
+      <!-- Delete button to delete a notice -->
+      <button *ngIf="notice.id" class="delete-button" (click)="deleteNotice(notice.id)">Delete</button>
+    </li> 
+  </ul>
+</div>
 
   <!-- Form for adding a new notice -->
  <div class="form section">
@@ -29,21 +48,6 @@
 </div>
 
 
- <!-- Section for displaying existing notices -->
-<div class="notices-section">
-  <h2>Notices</h2>
-  <ul>
-     <!-- Loop through each notice and display its title and message -->
-     <li *ngFor="let notice of filteredNotices">
-      <h3>{{ notice.title }}</h3>
-      <p>{{ notice.message }}</p>
-      <p>
-        <span *ngFor="let tag of notice.tags" [class]="'tag-' + tag.toLowerCase()">{{ tag }}</span>
-      </p>
-      <!-- Delete button to delete a notice -->
-      <button *ngIf="notice.id" class="delete-button" (click)="deleteNotice(notice.id)">Delete</button>
-    </li> 
-  </ul>
-</div>
+
 
 </div>
