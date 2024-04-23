@@ -106,3 +106,16 @@ button {
     background-color: darken(#17a2b8, 5%);
   }
 }
+
+.pomodoro-button {
+  background-color: #d9534f; /* Pomodoro red color */
+  color: white;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: none;
+  margin-left: 10px; /* spacing */
+  &:hover {
+    background-color: #c9302c; /* Darker red on hover */
+  }
+}
