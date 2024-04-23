@@ -47,7 +47,7 @@ ngOnInit()
 
     //Method to save task to session storage.
     deleteTask(index: number) {
-      this.tasks.splice(index, 1);
+      this.tasks.splice(index, 1); //remove element from array
       this.saveTasksToSessionStorage();
     }
   }
