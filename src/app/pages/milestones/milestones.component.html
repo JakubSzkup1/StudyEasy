@@ -1,6 +1,6 @@
 <!-- milestone.component.html -->
 <div class="milestone-container">
-  <h2>Milestones- Set Goals!</h2>
+  <h2>Milestones - Set Goals!</h2>
 
 
   <!-- Display existing milestones -->
@@ -12,7 +12,7 @@
         <p>{{ milestone.description }}</p>
         <p>Date: {{ milestone.date }}, Time: {{ milestone.time }}</p>
         <!-- Button to delete the milestone -->
-        <button (click)="milestone.id && deleteMilestone(milestone.id)">Delete</button>
+        <button  class= "delete-button"(click)="milestone.id && deleteMilestone(milestone.id)">Delete</button>
 
       </li>
     </ul>

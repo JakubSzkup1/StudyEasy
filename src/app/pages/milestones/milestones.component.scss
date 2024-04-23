@@ -8,6 +8,7 @@
     width: 100%;
     align-self: center; 
   }
+
   
   .header {
     padding: 10px 20px;
@@ -36,17 +37,29 @@
   
   button {
     background-color: #494848;
-    
     color: white;
-    padding: 10px 20px;
+    padding: 6px 12px;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
   }
   
   button:hover {
     background-color: #555;
+  }
+
+  .delete-button {
+    background-color: #c51414;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .delete-button:hover {
+    background-color: darkred;
   }
   
   .milestone {
