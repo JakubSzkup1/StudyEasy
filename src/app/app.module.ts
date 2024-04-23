@@ -25,6 +25,7 @@ import { NoticeBoardComponent } from './pages/notice-board/notice-board.componen
 import { MilestoneComponent } from './pages/milestones/milestones.component';
 import { TaskPanelComponent } from './task-panel/task-panel.component';
 import { WeeklyTimetableComponent } from './pages/weekly-timetable/weekly-timetable.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
 
 
 
@@ -43,7 +44,8 @@ import { WeeklyTimetableComponent } from './pages/weekly-timetable/weekly-timeta
     NoticeBoardComponent,
     MilestoneComponent,
     TaskPanelComponent,
-    WeeklyTimetableComponent
+    WeeklyTimetableComponent,
+    AboutusComponent
     
    
 

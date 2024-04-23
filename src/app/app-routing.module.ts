@@ -7,6 +7,7 @@ import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { NoticeBoardComponent } from './pages/notice-board/notice-board.component';
 import { WeeklyTimetableComponent } from './pages/weekly-timetable/weekly-timetable.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
 
 
 
@@ -40,6 +41,12 @@ const routes: Routes = [
     path: 'notice-board',
     component: NoticeBoardComponent
   },
+
+  {
+    path: 'about-us',
+   component: AboutusComponent
+  },
+ 
  
   
 
