@@ -1,10 +1,17 @@
 <div class="task-panel">
   <h3>Add Task- Add Some Tasks While You Study!</h3>
+  <!-- Input for adding a new task with newtask property -->
   <input type="text" [(ngModel)]="newTask" placeholder="Enter task">
   <button (click)="addTask()">Add</button>
 
   <h3>Tasks</h3>
   <ul>
-    <li *ngFor="let task of tasks">{{ task }}</li>
+    <!-- Display each task -->
+    <li *ngFor="let task of tasks">
+      <!-- Check box to mark tasks as complte using the taskCompleted method -->
+    <input type="checkbox" (change)="taskCompleted($event, task)" > 
+    <!-- Display the task name -->
+    <span>{{ task.name }}</span>
+  </li>
   </ul>
 </div>
