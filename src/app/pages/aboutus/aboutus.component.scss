@@ -1,43 +1,39 @@
-
-
 .wrapper {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.section {
-  flex: 1;
-  margin: 0 10px;
-  background: #ffffff;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin-top: 20px; /* Adds space between sections */
-}
-
-h3 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
-}
-
-// Styles for the unordered list in the About Us content
-ul {
-  list-style-type: none; // Removes default list styling
-  padding: 0;
-  margin: 0 0 10px 0;
-
-  li {
-    background: #f5f5f5; // Light grey background for list items
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 4px;
-
-    strong {
-      color: #28a745; // Green text for strong tags
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .section {
+    flex: 1;
+    margin: 0 10px;
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px; /* Adds space between sections */
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+  
+ 
+  ul {
+    list-style-type: none; // Removes default list styling
+    padding: 0;
+    margin: 0 0 10px 0;
+  
+    li {
+      background: #f5f5f5; // Light grey background for list items
+      margin-bottom: 5px;
+      padding: 10px;
+      border-radius: 4px;
+  
+      strong {
+        color: #28a745; // Green text for strong tags
+      }
     }
   }
-}
-
-
