@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <h3 class="h3-noticeboard">Welcome to the Notice Board</h3>
+  <h3 class="h3-noticeboard">Notice Board</h3>
 <div class="notice-board-container">  <!-- Container for the notice board -->
   
   <!-- This section is for adding a new notice -->
@@ -25,6 +25,16 @@
   </ul>
 </div>
 
+<!-- Section for the filter selection -->
+<div class="filter-section">
+  <label>Filter by Tag:</label>
+  <select [(ngModel)]="selectedFilterTag" (change)="applyFilter()">
+    <option value="">All Tags</option>
+    <option *ngFor="let tag of predefinedTags" [value]="tag">{{ tag }}</option>
+  </select>
+  <button (click)="resetFilter()">Reset Filter</button>
+</div>
+
   <!-- Form for adding a new notice -->
  <div class="form section">
   <input type="text" [(ngModel)]="newNotice.title" placeholder="Title" /> <!-- Input field for entering the title of the notice -->
@@ -37,15 +47,7 @@
   </div>
 </div>
 
-<!-- Section for the filter selection -->
-<div class="filter-section">
-  <label>Filter by Tag:</label>
-  <select [(ngModel)]="selectedFilterTag" (change)="applyFilter()">
-    <option value="">All Tags</option>
-    <option *ngFor="let tag of predefinedTags" [value]="tag">{{ tag }}</option>
-  </select>
-  <button (click)="resetFilter()">Reset Filter</button>
-</div>
+
 
 
 

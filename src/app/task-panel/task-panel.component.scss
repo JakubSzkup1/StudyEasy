@@ -45,4 +45,18 @@
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
   }
+
+ .task{
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+ }
+ 
+ .task:hover{
+  background-color: darkred;
+ }
+  
+  
   

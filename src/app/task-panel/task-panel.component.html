@@ -7,11 +7,13 @@
   <h3>Tasks</h3>
   <ul>
     <!-- Display each task -->
-    <li *ngFor="let task of tasks">
+    <li *ngFor="let task of tasks; let i = index"> <!-- index i = current task-->
       <!-- Check box to mark tasks as complte using the taskCompleted method -->
     <input type="checkbox" (change)="taskCompleted($event, task)" > 
     <!-- Display the task name -->
     <span>{{ task.name }}</span>
+    <!-- Delete task button  -->
+    <button class="task" (click)="deleteTask(i)">X</button>
   </li>
   </ul>
 </div>
