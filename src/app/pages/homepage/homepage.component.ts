@@ -1,4 +1,4 @@
-
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 interface Reminder {
@@ -50,10 +50,9 @@ export class HomepageComponent implements OnInit {
 
   dayNames: string[] = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  constructor() {
+  constructor(private router: Router) { // Inject the router here
     this.generateYears();
   }
-
   ngOnInit(): void {
   }
 
@@ -184,4 +183,8 @@ export class HomepageComponent implements OnInit {
       this.exams.splice(index, 1);
     }
   }
+  goToPomodoro(): void {
+    this.router.navigate(['/pomodoro']);
+  }
+
 }
