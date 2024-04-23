@@ -1,17 +1,7 @@
 <!-- milestone.component.html -->
 <div class="milestone-container">
-  <h2>Milestones</h2>
+  <h2>Milestones- Set Goals!</h2>
 
-  <!-- Form for adding a new milestone -->
-  <div class="form section">
-    <!-- Input fields for entering milestone details -->
-    <input type="text" [(ngModel)]="newMilestone.title" placeholder="Title" />
-    <textarea [(ngModel)]="newMilestone.description" placeholder="Description"></textarea>
-    <input type="date" [(ngModel)]="newMilestone.date" placeholder="Date" />
-    <input type="time" [(ngModel)]="newMilestone.time" placeholder="Time" />
-    <!-- Button to add the milestone -->
-    <button (click)="addMilestone()">Add Milestone</button>
-  </div>
 
   <!-- Display existing milestones -->
   <div class="milestones-section">
@@ -27,5 +17,17 @@
       </li>
     </ul>
   </div>
+
+  <!-- Form for adding a new milestone -->
+  <div class="form section">
+    <!-- Input fields for entering milestone details -->
+    <input type="text" [(ngModel)]="newMilestone.title" placeholder="Title" />
+    <textarea [(ngModel)]="newMilestone.description" placeholder="Description"></textarea>
+    <input type="date" [(ngModel)]="newMilestone.date" placeholder="Date" />
+    <input type="time" [(ngModel)]="newMilestone.time" placeholder="Time" />
+    <!-- Button to add the milestone -->
+    <button (click)="addMilestone()">Add Milestone</button>
+  </div>
+
 </div>
 

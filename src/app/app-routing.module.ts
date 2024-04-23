@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
-import { HomepageComponent } from './pages/homepage/homepage.component'; // Adjust the path as per your project structure
+import { HomepageComponent } from './pages/homepage/homepage.component'; 
 import { PomodoroComponent } from './pages/pomodoro/pomodoro.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { NoticeBoardComponent } from './pages/notice-board/notice-board.component';
