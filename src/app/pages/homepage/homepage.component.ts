@@ -31,19 +31,38 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.fetchAllItems();
+  }
+  
+  fetchAllItems(): void {
     this.fetchStudySessions();
     this.fetchExams();
+    this.fetchCompletedStudySessions();
+    this.fetchCompletedExams();
   }
-
+ 
   fetchStudySessions(): void {
     this.studySessionService.getStudySessions().subscribe(sessions => {
-      this.studySessions = this.reminders = sessions;
+      this.studySessions = sessions;
+      this.reminders = sessions.filter(session => !this.completedStudySessions.some(completedSession => completedSession.id === session.id));
     });
   }
-
+  
   fetchExams(): void {
     this.upcomingExamsService.getExams().subscribe(exams => {
       this.exams = exams;
+    });
+  }
+  
+  fetchCompletedStudySessions(): void {
+    this.studySessionService.getCompletedStudySessions().subscribe(completedSessions => {
+      this.completedStudySessions = completedSessions;
+    });
+  }
+  
+  fetchCompletedExams(): void {
+    this.upcomingExamsService.getCompletedExams().subscribe(completedExams => {
+      this.completedExams = completedExams;
     });
   }
 
@@ -100,16 +119,24 @@ export class HomepageComponent implements OnInit {
 
   completeSession(sessionId?: string): void {
     if (sessionId) {
-      const sessionToComplete = this.studySessions.find(session => session.id === sessionId);
-      if (sessionToComplete) {
+      const sessionToCompleteIndex = this.studySessions.findIndex(session => session.id === sessionId);
+      if (sessionToCompleteIndex !== -1) {
+        const sessionToComplete = this.studySessions.splice(sessionToCompleteIndex, 1)[0];
         this.studySessionService.markAsComplete(sessionId, sessionToComplete).then(() => {
-          this.fetchStudySessions();
+          this.completedStudySessions.push(sessionToComplete);
+          // Delete the session from the database
+          this.studySessionService.deleteStudySession(sessionId).then(() => {
+            console.log('Study session deleted from database.');
+          }).catch(error => {
+            console.error('Error deleting study session from database:', error);
+          });
         }).catch(error => {
           console.error('Error completing study session:', error);
         });
       }
     }
   }
+  
 
   cancelEdit(): void {
     this.editingSessionId = undefined;
@@ -157,20 +184,27 @@ export class HomepageComponent implements OnInit {
       });
     }
   }
-
   completeExam(examId?: string): void {
     if (examId) {
-      const examToComplete = this.exams.find(exam => exam.id === examId);
-      if (examToComplete) {
+      const examToCompleteIndex = this.exams.findIndex(exam => exam.id === examId);
+      if (examToCompleteIndex !== -1) {
+        const examToComplete = this.exams.splice(examToCompleteIndex, 1)[0];
         this.upcomingExamsService.markAsComplete(examId, examToComplete).then(() => {
-          this.fetchExams();
+          this.completedExams.push(examToComplete);
+          // Delete the exam from the database
+          this.upcomingExamsService.deleteExam(examId).then(() => {
+            console.log('Exam deleted from database.');
+          }).catch(error => {
+            console.error('Error deleting exam from database:', error);
+          });
         }).catch(error => {
           console.error('Error completing exam:', error);
         });
       }
     }
   }
-
+  
+  
   goToPomodoro(): void {
     this.router.navigate(['/pomodoro']);
   }

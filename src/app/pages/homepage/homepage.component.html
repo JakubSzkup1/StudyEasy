@@ -77,8 +77,8 @@
   <div class="section">
     <h3>Completed Sessions</h3>
     <div class="list-container">
-      <div *ngFor="let completedReminder of completedReminders" class="list-item">
-        <span>{{ completedReminder.title }} - Completed on {{ completedReminder.date }} at {{ completedReminder.time }}</span>
+      <div *ngFor="let completedStudySession of completedStudySessions" class="list-item">
+        <span>{{ completedStudySession.title }} - Completed on {{ completedStudySession.date }} at {{ completedStudySession.time }}</span>
       </div>
     </div>
   </div>

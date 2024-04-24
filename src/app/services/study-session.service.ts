@@ -21,7 +21,7 @@ export class StudySessionService {
   }
 
   getStudySessions(): Observable<StudySession[]> {
-    return this.firestore.collection<StudySession>('studySessions').valueChanges({ idField: 'id' });
+    return this.firestore.collection<StudySession>('studySessions').valueChanges();
   }
 
   updateStudySession(sessionId: string, session: StudySession) {
@@ -36,5 +36,11 @@ export class StudySessionService {
     return this.firestore.collection('completedStudySessions').doc(sessionId).set(sessionData)
       .then(() => console.log("Marked as complete successfully."))
       .catch(error => console.error("Failed to mark as complete:", error));
+
+      
+  }
+  
+  getCompletedStudySessions(): Observable<StudySession[]> {
+    return this.firestore.collection<StudySession>('completedStudySessions').valueChanges();
   }
 }

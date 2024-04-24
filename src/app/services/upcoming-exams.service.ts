@@ -20,7 +20,7 @@ export class UpcomingExamsService {
   }
 
   getExams(): Observable<Exam[]> {
-    return this.firestore.collection<Exam>('exams').valueChanges({ idField: 'id' });
+    return this.firestore.collection<Exam>('exams').valueChanges();
   }
 
   updateExam(examId: string, exam: Exam) {
@@ -35,5 +35,9 @@ export class UpcomingExamsService {
     return this.firestore.collection('completedExams').doc(examId).set(examData)
       .then(() => console.log("Exam marked as complete successfully."))
       .catch(error => console.error("Failed to mark exam as complete:", error));
+  }
+
+  getCompletedExams(): Observable<Exam[]> {
+    return this.firestore.collection<Exam>('completedExams').valueChanges();
   }
 }
