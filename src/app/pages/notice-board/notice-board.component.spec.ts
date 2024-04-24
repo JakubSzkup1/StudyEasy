@@ -21,4 +21,6 @@ describe('NoticeBoardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  
 });

@@ -55,11 +55,13 @@ textarea {
 button {
   background-color: #333;
   color: white;
-  padding: 10px 20px;
+  padding: 8px 10px;
   border: none;
   border-radius: 0;
   cursor: pointer;
   font-size: 16px;
+  border-radius: 5px;
+  
 }
 
 button:hover {
