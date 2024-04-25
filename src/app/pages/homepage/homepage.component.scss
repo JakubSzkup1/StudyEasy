@@ -1,17 +1,27 @@
-body, html {
-  font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
+/* Base styles */
+* {
   margin: 0;
   padding: 0;
-  height: 100%;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
 }
 
 .wrapper {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
 }
+
 
 .logo {
   display: block; // Ensureing the image is a block-level element
@@ -25,99 +35,83 @@ body, html {
   display: flex;
   justify-content: space-between;
 }
+=======
+>>>>>>> ad3629bf32d4f5c92c30b92c92b63eebe10ad223
 
 .section {
-  flex: 1;
-  margin: 0 10px;
-  background: #ffffff;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin-top: 20px; /* Adds space between sections */
 }
 
 h3 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
 }
 
-input[type="text"], input[type="date"], input[type="time"], button {
-  width: calc(100% - 20px); // Accounts for padding
+input[type="text"],
+input[type="date"],
+input[type="time"],
+button {
   padding: 10px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  box-sizing: border-box; 
+  width: 100%;
 }
 
-button {
-  background-color: #28a745; /* Green */
-  color: white;
-  cursor: pointer;
-  &:hover {
-    background-color: #218838; /* Darker green on hover */
-  }
-}
 
 .list-container {
-  margin-top: 20px;
+  max-height: 200px;
   overflow-y: auto;
-  max-height: 200px; 
-  overflow-y: auto; /* Enables scrolling if content overflows */
 }
 
-.list-item {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.session-details, .exam-details {
-  flex-grow: 1;
-  margin-right: 10px; 
+::-webkit-scrollbar-track {
+  background: #eaeaea;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+
+button {
+  font-weight: bold;
+  border: none;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.edit-button { background-color: #ffc107; color: black; }
+.delete-button { background-color: #dc3545; }
+.complete-button { background-color: #28a745; }
+.pomodoro-button { background-color: #007bff; }
+
+button:hover {
+  filter: brightness(90%);
+}
+
+
+@media (min-width: 768px) {
+  .wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .button-container {
   display: flex;
-  flex-shrink: 0; // Prevent buttons from shrinking
-  gap: 10px;
-}
-
-.edit-button, .delete-button, .complete-button, .pomodoro-button {
-  padding: 10px 15px; 
-  border: none;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.edit-button {
-  background-color: #ffc107;
-  &:hover {
-    background-color: #b28900;
-  }
-}
-
-.delete-button {
-  background-color: #dc3545;
-  &:hover {
-    background-color: #bd2130;
-  }
-}
-
-.complete-button {
-  background-color: #17a2b8;
-  &:hover {
-    background-color: darken(#17a2b8, 5%);
-  }
-}
-
-.pomodoro-button {
-  background-color: #28a745; 
-  &:hover {
-    background-color: #218838;
-  }
+  justify-content: start;
+  gap: 10px; 
 }

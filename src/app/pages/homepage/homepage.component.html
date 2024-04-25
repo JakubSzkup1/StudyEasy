@@ -58,7 +58,7 @@
             <input type="date" [(ngModel)]="exam.date">
             <input type="time" [(ngModel)]="exam.time">
             <button (click)="saveExam()">Save</button>
-            <button (click)="cancelExamEdit()">Cancel</button>
+            <button (click)="cancelEdit()">Cancel</button>
           </div>
           <div *ngIf="editingExamId !== exam.id">
             <span>{{ exam.subject }} - {{ exam.date }} at {{ exam.time }}</span>
@@ -66,6 +66,8 @@
               <button class="edit-button" (click)="editExam(exam.id)">Edit</button>
               <button class="delete-button" (click)="deleteExam(exam.id)">Delete</button>
               <button class="complete-button" (click)="completeExam(exam.id)">Complete</button>
+
+              
             </div>
           </div>
         </div>
@@ -77,18 +79,18 @@
   <div class="section">
     <h3>Completed Sessions</h3>
     <div class="list-container">
-      <div *ngFor="let completedReminder of completedReminders" class="list-item">
-        <span>{{ completedReminder.title }} - Completed on {{ completedReminder.date }} at {{ completedReminder.time }}</span>
+      <div *ngFor="let completedStudySession of completedStudySessions" class="list-item">
+        <span>{{ completedStudySession.title }} {{ completedStudySession.date }}  {{ completedStudySession.time }}</span>
       </div>
     </div>
   </div>
   
-  <!-- Completed Exams -->
+  <!-- Completed Exams .-->
   <div class="section">
     <h3>Completed Exams</h3>
     <div class="list-container">
       <div *ngFor="let completedExam of completedExams" class="list-item">
-        <span>{{ completedExam.subject }} - Exam on {{ completedExam.date }} at {{ completedExam.time }}</span>
+        <span>{{ completedExam.subject }} {{ completedExam.date }}  {{ completedExam.time }}</span>
       </div>
     </div>
   </div>
