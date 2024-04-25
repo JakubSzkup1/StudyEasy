@@ -26,8 +26,8 @@ const routes: Routes = [
     component: RegistrationComponent
   },
   {
-    path: 'home',
-    component: HomepageComponent
+    path: 'Home',
+    component: AboutusComponent
   },
   {
     path: 'pomodoro',
@@ -43,9 +43,10 @@ const routes: Routes = [
   },
 
   {
-    path: 'about-us',
-   component: AboutusComponent
+    path: 'Study-Sessions',
+   component: HomepageComponent
   },
+  
  
  
   
