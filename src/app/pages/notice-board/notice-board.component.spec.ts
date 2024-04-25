@@ -22,5 +22,5 @@ describe('NoticeBoardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
+
 });

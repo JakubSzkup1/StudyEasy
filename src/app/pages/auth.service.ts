@@ -21,8 +21,6 @@ export class AuthService {
 
   // Logout method
   logout(): void {
-    // Implement logout logic here, such as clearing session data or tokens
-    // For example:
     localStorage.removeItem('token'); // Clear stored token
   }
 }
