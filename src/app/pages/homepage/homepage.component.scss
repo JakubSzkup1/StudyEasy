@@ -56,14 +56,19 @@ button {
   overflow-y: auto;
   max-height: 200px; 
   overflow-y: auto; /* Enables scrolling if content overflows */
+  
 }
 
 .list-item {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #eee;
+  overflow: visible; /* Change this to 'visible' if it was 'hidden' */
+  /* Add the following rules if text wrapping is desired */
+  flex-wrap: wrap;
+  gap: 10px; /* Adds a little space between wrapped items */
 }
 
 .session-details, .exam-details {

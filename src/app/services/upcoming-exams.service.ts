@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
+// 
 export interface Exam {
   id?: string;
   subject: string;
@@ -20,7 +21,7 @@ export class UpcomingExamsService {
   }
 
   getExams(): Observable<Exam[]> {
-    return this.firestore.collection<Exam>('exams').valueChanges();
+    return this.firestore.collection<Exam>('exams').valueChanges({ idField: 'id' });
   }
 
   updateExam(examId: string, exam: Exam) {
@@ -31,13 +32,16 @@ export class UpcomingExamsService {
     return this.firestore.collection('exams').doc(examId).delete();
   }
 
-  markAsComplete(examId: string, examData: Exam) {
-    return this.firestore.collection('completedExams').doc(examId).set(examData)
-      .then(() => console.log("Exam marked as complete successfully."))
-      .catch(error => console.error("Failed to mark exam as complete:", error));
+  getCompletedExams(): Observable<Exam[]> {
+    return this.firestore.collection<Exam>('completedExams').valueChanges({ idField: 'id' });
   }
 
-  getCompletedExams(): Observable<Exam[]> {
-    return this.firestore.collection<Exam>('completedExams').valueChanges();
+  markAsComplete(examId: string, exam: Exam) {
+    const completedRef = this.firestore.collection('completedExams').doc(examId);
+    return this.firestore.firestore.runTransaction((transaction) => {
+      transaction.set(completedRef.ref, exam);
+      transaction.delete(this.firestore.collection('exams').doc(examId).ref);
+      return Promise.resolve();
+    });
   }
 }

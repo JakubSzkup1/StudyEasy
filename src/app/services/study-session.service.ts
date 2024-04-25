@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 
+
 export interface StudySession {
   id?: string;
   title: string;
@@ -21,7 +22,7 @@ export class StudySessionService {
   }
 
   getStudySessions(): Observable<StudySession[]> {
-    return this.firestore.collection<StudySession>('studySessions').valueChanges();
+    return this.firestore.collection<StudySession>('studySessions').valueChanges({ idField: 'id' });
   }
 
   updateStudySession(sessionId: string, session: StudySession) {
@@ -32,15 +33,15 @@ export class StudySessionService {
     return this.firestore.collection('studySessions').doc(sessionId).delete();
   }
   
-  markAsComplete(sessionId: string, sessionData: StudySession) {
-    return this.firestore.collection('completedStudySessions').doc(sessionId).set(sessionData)
-      .then(() => console.log("Marked as complete successfully."))
-      .catch(error => console.error("Failed to mark as complete:", error));
-
-      
-  }
-  
   getCompletedStudySessions(): Observable<StudySession[]> {
-    return this.firestore.collection<StudySession>('completedStudySessions').valueChanges();
+    return this.firestore.collection<StudySession>('completedStudySessions').valueChanges({ idField: 'id' });
   }
+  markAsComplete(sessionId: string, session: StudySession) {
+    const completedRef = this.firestore.collection('completedStudySessions').doc(sessionId);
+    return this.firestore.firestore.runTransaction((transaction) => {
+      transaction.set(completedRef.ref, session);
+      transaction.delete(this.firestore.collection('studySessions').doc(sessionId).ref);
+      return Promise.resolve();
+    });
+}
 }
