@@ -29,7 +29,7 @@ body, html {
   border-radius: 8px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Heading styles */
@@ -74,8 +74,15 @@ button {
   background: #a8a8a8;
 }
 
-/* Button styles */
-button {
+/* Consistent Button styles */
+/* Consistent Button styles */
+.edit-button, .delete-button, .complete-button, .pomodoro-button {
+  padding: 8px 16px; /* Consistent padding */
+  min-width: 90px; /* Minimum width to maintain consistency */
+  display: inline-flex; /* Use flex to align text and icons */
+  align-items: center; /* Center the content vertically */
+  justify-content: center; /* Center the content horizontally */
+  border-radius: 4px; /* Consistent border radius */
   font-weight: bold;
   border: none;
   transition: background-color 0.3s;
@@ -106,3 +113,19 @@ button:hover {
 }
 
 
+/* Consistent list-item styles */
+.list-item {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between; /* Space between content and buttons */
+  margin-bottom: 10px; /* Consistent margin for separation */
+  padding: 10px; /* Consistent padding for content */
+  background-color: #ffffff; /* Consistent background color for list items */
+  border-radius: 4px; /* Rounded corners for list items */
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+}
+
+/* Ensure all buttons look the same */
+button:hover {
+  filter: brightness(90%);
+}
