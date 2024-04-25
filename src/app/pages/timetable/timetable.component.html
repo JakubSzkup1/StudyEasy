@@ -1,17 +1,23 @@
-<app-navbar></app-navbar>
-<img src="assets/logo2.png" alt="StudyEasy Logo" class="logo">
+<app-navbar></app-navbar><!-- nav -->
+<img src="assets/logo2.png" alt="StudyEasy Logo" class="logo"><!-- logo -->
+
 <div class="timetable-container">
   
+  <!-- Heading displaying the current group's timetable -->
   <h2>{{ currentGroup }} Timetable</h2>
+  
+  <!-- Buttons to switch between different groups -->
   <div class="group-buttons">
     <button *ngFor="let group of ['Group A', 'Group B', 'Group C']" (click)="switchGroup(group)">
       {{ group }}
     </button>
   </div>
 
+  <!-- Table displaying the timetable -->
   <table>
     <thead>
       <tr>
+        <!-- Table headers -->
         <th>Day</th>
         <th>Time</th>
         <th>Subject</th>
@@ -20,7 +26,9 @@
       </tr>
     </thead>
     <tbody>
+      <!-- Rows for each timetable entry -->
       <tr *ngFor="let entry of displayedTimetable">
+        <!-- Data cells for each timetable entry -->
         <td>{{ entry.day }}</td>
         <td>{{ entry.time }}</td>
         <td>{{ entry.subject }}</td>

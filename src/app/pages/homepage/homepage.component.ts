@@ -1,54 +1,61 @@
-import { Router } from '@angular/router';
-import { UpcomingExamsService, Exam } from 'src/app/services/upcoming-exams.service';
-import { StudySessionService, StudySession } from 'src/app/services/study-session.service';
-import { Component, OnInit } from '@angular/core';
+// Import necessary modules and services
+import { Router } from '@angular/router'; // Import Router module from Angular router
+import { UpcomingExamsService, Exam } from 'src/app/services/upcoming-exams.service'; // Import UpcomingExamsService and Exam interface from respective files
+import { StudySessionService, StudySession } from 'src/app/services/study-session.service'; // Import StudySessionService and StudySession interface from respective files
+import { Component, OnInit } from '@angular/core'; // Import Component and OnInit interfaces from Angular core
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  styleUrls: ['./homepage.component.scss'] // Styles specific to this component
 })
 export class HomepageComponent implements OnInit {
-  eventTitle: string = '';
-  eventDate: string = '';
-  eventTime: string = '';
+  // Variables for adding study sessions
+  eventTitle: string = ''; // Title of the event
+  eventDate: string = ''; // Date of the event
+  eventTime: string = ''; // Time of the event
 
-  studySessions: StudySession[] = [];
-  reminders: StudySession[] = [];
-  completedStudySessions: StudySession[] = [];
-  completedReminders: StudySession[] = []; 
-  editingSessionId?: string;
+  // Arrays to store study sessions and exams
+  studySessions: StudySession[] = []; // Array to store upcoming study sessions
+  reminders: StudySession[] = []; // Array to store reminders
+  completedStudySessions: StudySession[] = []; // Array to store completed study sessions
+  completedReminders: StudySession[] = []; // Array to store completed reminders
+  editingSessionId?: string; // ID of the session being edited
 
-  exams: Exam[] = [];
-  completedExams: Exam[] = [];
-  newExam: Exam = { subject: '', date: '', time: '' };
-  editingExamId?: string;
+  exams: Exam[] = []; // Array to store upcoming exams
+  completedExams: Exam[] = []; // Array to store completed exams
+  newExam: Exam = { subject: '', date: '', time: '' }; // New exam object to be added
+  editingExamId?: string; // ID of the exam being edited
 
   constructor(
-    private studySessionService: StudySessionService,
-    private upcomingExamsService: UpcomingExamsService,
-    private router: Router
+    private studySessionService: StudySessionService, // Inject StudySessionService
+    private upcomingExamsService: UpcomingExamsService, // Inject UpcomingExamsService
+    private router: Router // Inject Router for navigation
   ) {}
 
   ngOnInit(): void {
-    this.fetchStudySessions();
-    this.fetchCompletedStudySessions();
-    this.fetchExams();
-    this.fetchCompletedExams();
+    // Fetch data on component initialization
+    this.fetchStudySessions(); // Fetch study sessions
+    this.fetchCompletedStudySessions(); // Fetch completed study sessions
+    this.fetchExams(); // Fetch upcoming exams
+    this.fetchCompletedExams(); // Fetch completed exams
   }
 
+  // Fetch study sessions from the service
   fetchStudySessions(): void {
     this.studySessionService.getStudySessions().subscribe(sessions => {
       this.studySessions = this.reminders = sessions; // Assign to both for mirroring
     });
   }
 
+  // Fetch exams from the service
   fetchExams(): void {
     this.upcomingExamsService.getExams().subscribe(exams => {
       this.exams = exams;
     });
   }
 
+  // Add a new study session
   addEvent(): void {
     if (this.eventTitle && this.eventDate && this.eventTime) {
       const newSession: StudySession = {
@@ -58,7 +65,7 @@ export class HomepageComponent implements OnInit {
         time: this.eventTime
       };
       this.studySessionService.addStudySession(newSession).then(() => {
-        this.fetchStudySessions();
+        this.fetchStudySessions(); // Update study sessions list
         // Reset input fields after adding session
         this.eventTitle = '';
         this.eventDate = '';
@@ -71,32 +78,36 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+  // Edit a study session
   editSession(sessionId?: string): void {
     if (sessionId) {
       this.editingSessionId = sessionId;
     }
   }
 
+  // Save changes to a study session
   saveSession(): void {
     if (this.editingSessionId) {
       const sessionToUpdate = this.studySessions.find(session => session.id === this.editingSessionId);
       if (sessionToUpdate) {
         this.studySessionService.updateStudySession(this.editingSessionId, sessionToUpdate).then(() => {
-          this.fetchStudySessions();
+          this.fetchStudySessions(); // Update study sessions list
           this.editingSessionId = undefined;
         });
       }
     }
   }
 
+  // Delete a study session
   deleteEvent(sessionId?: string): void {
     if (sessionId) {
       this.studySessionService.deleteStudySession(sessionId).then(() => {
-        this.fetchStudySessions();
+        this.fetchStudySessions(); // Update study sessions list
       });
     }
   }
 
+  // Mark a study session as complete
   completeSession(sessionId?: string): void {
     if (sessionId) {
       const sessionToComplete = this.studySessions.find(session => session.id === sessionId);
@@ -113,51 +124,56 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+  // Fetch completed study sessions
   fetchCompletedStudySessions(): void {
     this.studySessionService.getCompletedStudySessions().subscribe(completedSessions => {
       this.completedStudySessions = completedSessions;
     });
   }
   
-  
-
+  // Cancel editing a study session
   cancelEdit(): void {
     this.editingSessionId = undefined;
   }
 
+  // Add a new exam
   addExam(): void {
     this.upcomingExamsService.addExam(this.newExam).then(() => {
-      this.fetchExams();
-      this.newExam = { subject: '', date: '', time: '' };
+      this.fetchExams(); // Update exams list
+      this.newExam = { subject: '', date: '', time: '' }; // Reset input fields after adding exam
     });
   }
 
+  // Edit an exam
   editExam(examId?: string): void {
     if (examId) {
       this.editingExamId = examId;
     }
   }
 
+  // Save changes to an exam
   saveExam(): void {
     if (this.editingExamId) {
       const examToUpdate = this.exams.find(exam => exam.id === this.editingExamId);
       if (examToUpdate) {
         this.upcomingExamsService.updateExam(this.editingExamId, examToUpdate).then(() => {
-          this.fetchExams();
+          this.fetchExams(); // Update exams list
           this.editingExamId = undefined;
         });
       }
     }
   }
 
+  // Delete an exam
   deleteExam(examId?: string): void {
     if (examId) {
       this.upcomingExamsService.deleteExam(examId).then(() => {
-        this.fetchExams();
+        this.fetchExams(); // Update exams list
       });
     }
   }
 
+  // Mark an exam as complete
   completeExam(examId?: string): void {
     if (examId) {
       const examToComplete = this.exams.find(exam => exam.id === examId);
@@ -174,13 +190,15 @@ export class HomepageComponent implements OnInit {
     }
   }
 
+  // Fetch completed exams
   fetchCompletedExams(): void {
     this.upcomingExamsService.getCompletedExams().subscribe(completedExams => {
       this.completedExams = completedExams;
     });
   }
 
+  // Navigate to Pomodoro timer
   goToPomodoro(): void {
-    this.router.navigate(['/pomodoro']); // Ensure this route is defined in your routing configuration
+    this.router.navigate(['/pomodoro']); // route set in app module
   }
 }

@@ -1,89 +1,97 @@
+/* Styling for the timetable container */
 .timetable-container {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    padding: 15px;
-    margin: 15px auto;
-    max-width: 1100px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
-    overflow-y: auto;
-  }
-
-  .logo {
-    display: block; // Ensureing the image is a block-level element
-    margin: 0 auto 20px; // Centers the image and adds space below
-    width: 100px; 
-    height: auto; 
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  padding: 15px;
+  margin: 15px auto;
+  max-width: 1100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Allow vertical scrolling if content exceeds container height */
 }
-  
 
-  .group-buttons {
-    text-align: center;
-    margin-bottom: 20px;
-  
-    button {
-      background: black;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin: 0 10px;
-      cursor: pointer;
-      border-radius: 4px;
-      font-size: 16px;
-  
-      &:hover {
-        background-color: #333;
-      }
-  
-      &.active {
-        background-color: #555;
-      }
-    }
+/* Styling for the logo */
+.logo {
+  display: block; /* Ensure the image is a block-level element */
+  margin: 0 auto 20px; /* Centers the image horizontally and adds space below */
+  width: 100px; /* Set width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Styling for group buttons */
+.group-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styling for buttons */
+button {
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background-color: #333;
+}
+
+/* Active state for buttons */
+button.active {
+  background-color: #555;
+}
+
+/* Styling for the table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+/* Styling for table headers */
+thead tr {
+  background: black;
+  color: white;
+}
+
+/* Styling for table cells */
+th, td {
+  padding: 10px;
+  border: 1px solid #e2e2e2;
+  text-align: left;
+}
+
+/* Remove right border for last cell in a row */
+th:not(:last-child),
+td:not(:last-child) {
+  border-right: none;
+}
+
+/* Styling for even rows */
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover effect for rows */
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 768px) {
+  /* Adjust padding for smaller screens */
+  .timetable-container {
+    padding: 10px;
   }
   
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: white;
-  
-    thead {
-      tr {
-        background: black;
-        color: white;
-      }
-    }
-  
-    th, td {
-      padding: 10px;
-      border: 1px solid #e2e2e2;
-      text-align: left;
-  
-      &:not(:last-child) {
-        border-right: none;
-      }
-    }
-  
-    tbody {
-      tr {
-        &:nth-child(even) {
-          background-color: #f2f2f2;
-        }
-        &:hover {
-          background-color: #ddd;
-        }
-      }
-    }
+  /* Adjust button size and font size for smaller screens */
+  .group-buttons button {
+    padding: 5px 10px;
+    font-size: 14px;
   }
-  
-  @media only screen and (max-width: 768px) {
-    .timetable-container {
-      padding: 10px;
-    }
-    
-    .group-buttons button {
-      padding: 5px 10px;
-      font-size: 14px;
-    }
-  }
-  
+}

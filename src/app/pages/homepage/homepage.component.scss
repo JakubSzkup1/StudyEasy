@@ -11,6 +11,7 @@ body, html {
   color: #333;
 }
 
+/* Wrapper styles */
 .wrapper {
   padding: 20px;
   display: grid;
@@ -22,7 +23,7 @@ body, html {
   align-items: center; /* Center content horizontally */
 }
 
-
+/* Section styles */
 .section {
   background-color: #ffffff;
   border-radius: 8px;
@@ -31,12 +32,14 @@ body, html {
   overflow: hidden;
 }
 
+/* Heading styles */
 h3 {
   font-size: 24px;
   color: #333;
   margin-bottom: 15px;
 }
 
+/* Input and button styles */
 input[type="text"],
 input[type="date"],
 input[type="time"],
@@ -48,13 +51,13 @@ button {
   width: 100%;
 }
 
-
+/* List container styles */
 .list-container {
   max-height: 200px;
   overflow-y: auto;
 }
 
-
+/* Scrollbar styles */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -71,7 +74,7 @@ button {
   background: #a8a8a8;
 }
 
-
+/* Button styles */
 button {
   font-weight: bold;
   border: none;
@@ -79,31 +82,27 @@ button {
   cursor: pointer;
 }
 
-.edit-button { background-color: #ffc107; color: black; }
-.delete-button { background-color: #dc3545; }
-.complete-button { background-color: #28a745; }
-.pomodoro-button { background-color: #007bff; }
+.edit-button { background-color: #ffc107; color: black; } /* Edit button color */
+.delete-button { background-color: #dc3545; } /* Delete button color */
+.complete-button { background-color: #28a745; } /* Complete button color */
+.pomodoro-button { background-color: #007bff; } /* Pomodoro button color */
 
 button:hover {
   filter: brightness(90%);
 }
 
-
+/* Media query for responsive layout */
 @media (min-width: 768px) {
   .wrapper {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+/* Additional styles for buttons */
 .button-container {
   display: flex;
   justify-content: start;
   gap: 10px; 
 }
 
-/* Assumed existing classes based on your HTML structure */
 
-/* Logo class */
-.h3-noticeboard{
-  font-size: 50px;
-}

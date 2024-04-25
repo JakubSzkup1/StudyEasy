@@ -15,7 +15,9 @@ interface TimetableEntry {
 })
 export class TimetableComponent implements OnInit {
   currentGroup: string = 'Group A';
+  // Current group being displayed in the timetable
   timetable: { [group: string]: TimetableEntry[] } = {
+     // Defining the timetable data structure where group names are keys and timetable entries are arrays
     'Group A': [
       { day: 'Monday', time: '10:00 AM', subject: 'Database Mgmt Systems', type: 'Lecture', room: 'Room 996' },
       { day: 'Monday', time: '12:00 PM', subject: 'Graphy Theory', type: 'Lecture', room: 'Room 996' },
@@ -71,17 +73,20 @@ export class TimetableComponent implements OnInit {
       { day: 'Thursday', time: '3:00 PM', subject: 'Adv. Data Centric Webp App', type: 'Practical', room: 'Room 483' }
     ]
   };
+  
+ // Array to store timetable entries to be displayed
+ displayedTimetable: TimetableEntry[] = [];
 
-  displayedTimetable: TimetableEntry[] = [];
+ constructor() {}
 
-  constructor() {}
+ ngOnInit() {
+   // Initialize the timetable display with the current group
+   this.switchGroup(this.currentGroup);
+ }
 
-  ngOnInit() {
-    this.switchGroup(this.currentGroup);
-  }
-
-  switchGroup(group: string) {
-    this.currentGroup = group;
-    this.displayedTimetable = this.timetable[group];
-  }
+ // Function to switch between different groups in the timetable
+ switchGroup(group: string) {
+   this.currentGroup = group;
+   this.displayedTimetable = this.timetable[group];
+ }
 }
