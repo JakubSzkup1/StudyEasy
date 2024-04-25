@@ -11,6 +11,13 @@
 
 }
 
+.logo {
+  display: block; // Ensureing the image is a block-level element
+  margin: 0 auto 20px; // Centers the image and adds space below
+  width: 100px; 
+  height: auto; 
+}
+
 .notice-board-container,
 .notices-section {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
