@@ -23,12 +23,6 @@ body, html {
 }
 
 
-.session-exam-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-
 .section {
   background-color: #ffffff;
   border-radius: 8px;
@@ -107,23 +101,6 @@ button:hover {
   gap: 10px; 
 }
 
+/* Assumed existing classes based on your HTML structure */
 
-
-
-.logo {
-  display: block;
-  margin: 0 auto 20px auto; 
-  width: 200px; 
-}
-
-/* Title class */
-.h3-studysessions {
-  text-align: center;
-  font-size: 24px; 
-  margin-bottom: 5px; 
-}
-
-
-.wrapper h3.h3-studysessions {
-  margin-top: -40px; 
-}
+/* Logo class */
