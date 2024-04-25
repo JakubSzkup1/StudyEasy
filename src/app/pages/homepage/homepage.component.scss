@@ -23,6 +23,12 @@ body, html {
 }
 
 
+.session-exam-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 .section {
   background-color: #ffffff;
   border-radius: 8px;
