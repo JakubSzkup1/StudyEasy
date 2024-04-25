@@ -1,4 +1,6 @@
 .container {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +23,7 @@
 .notice-board-container,
 .notices-section {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ddd;
+   border: 1px solid #ddd;
   background-color: #fff;
   margin-bottom: 20px;
   max-width: 800px;
@@ -78,9 +80,11 @@ button:hover {
 .notice {
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  border: 1px solid #131212; 
+  border-radius: 5px;
   flex: 1;
-  min-width: calc(33.333% - 10px);
-  max-width: calc(33.333% - 10px);
+  min-width: calc(33.333% - 12px);
+  max-width: calc(33.333% - 12px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
@@ -93,6 +97,7 @@ button:hover {
   margin-top: 0;
   color: #333;
   font-size: 18px;
+  font-weight: bold;
 }
 
 .notice p {
@@ -104,23 +109,27 @@ button:hover {
 
 .tag-important {
   @extend .tag-base;
-  background-color: #ff6347;
+  background-color: rgba(255, 99, 71, 0.5);
+  border-radius: 5px;
 }
 
 .tag-urgent {
   @extend .tag-base;
-  background-color: #ffd700;
+  background-color: rgba(255, 215, 0, 0.5);
   color: #000000;
+  border-radius: 5px;
 }
 
 .tag-general {
   @extend .tag-base;
-  background-color: #20b2aa;
+  background-color: rgba(32, 178, 170, 0.5);
+  border-radius: 5px;
 }
 
 .tag-announcement {
   @extend .tag-base;
-  background-color: #4169e1;
+  background-color: rgba(65, 105, 225, 0.5);
+  border-radius: 5px;
 }
 
 .tag-base {
